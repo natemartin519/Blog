@@ -1,5 +1,16 @@
 # Bloging Site Using Laravel PHP Framework. 
 
+#### Current Status/TODO List
+- [x] Create database tables.
+- [x] Setup barebone routes, controllers, models, and views.
+- [ ] Add simple functionality to the controllers.
+- [ ] Add models functionality.
+- [ ] Add simple functionality to the views.
+- [ ] Add authentication to make/edit a blog post.
+- [ ] Add user comments.
+- [ ] Make it look pretty with Bootstrap.
+
+
 #### Setup
 1. Use 'php composer.phar install' to download Laravel.
 2. Update '/app/config/database.php' with your datatbase credentials.
