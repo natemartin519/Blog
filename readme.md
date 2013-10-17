@@ -1,12 +1,15 @@
-Simple bloging site using Laravel PHP Frame work. 
+# Bloging Site Using Laravel PHP Framework. 
 
-Update /app/config/database.php with datatbases' credentials then use php artisan to setup a database margration.
+#### Setup
+1. Use 'php composer.phar install' to download Laravel.
+2. Update '/app/config/database.php' with your datatbase credentials.
+3. Use 'php artisan migrate:install' to setup a margration table.
+4. Use 'php artisan migrate' to setup the blog tables
 
 
+<br><br><br>
 
 
-
-#######################################################################################################
 ## Laravel PHP Framework
 
 [![Latest Stable Version](https://poser.pugx.org/laravel/framework/version.png)](https://packagist.org/packages/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.png)](https://packagist.org/packages/laravel/framework) [![Build Status](https://travis-ci.org/laravel/framework.png)](https://travis-ci.org/laravel/framework)
