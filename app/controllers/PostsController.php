@@ -2,6 +2,13 @@
 
 class PostsController extends BaseController {
 
+	protected $post;
+
+	public function __construct(Post $post) 
+	{
+		$this->post = $post;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,7 +16,9 @@ class PostsController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('posts.index');
+		$posts = $this->post->all();
+
+        return View::make('post.posts.index', compact('posts'));
 	}
 
 	/**
@@ -19,7 +28,7 @@ class PostsController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('posts.create');
+        return View::make('post.posts.create');
 	}
 
 	/**
@@ -29,7 +38,20 @@ class PostsController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::all();
+		$valid = Validator::make($input, Post::$rules);
+
+		if ($valid->passes())
+		{
+			$this->post->create($input);
+
+			return Redirect::route('post.posts.index');
+		}
+
+		return Redirect::route('post.posts.create')
+			->withInput()
+			->withErrors($valid)
+			->with('message', 'Error: Unable to validate record');
 	}
 
 	/**
@@ -40,7 +62,9 @@ class PostsController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('posts.show');
+		$post = $this->post->findOrFail($id);
+
+        return View::make('post.posts.show', compact('post'));
 	}
 
 	/**
@@ -51,7 +75,14 @@ class PostsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('posts.edit');
+		$post = $this->post->find($id);
+
+		if (is_null($post))
+		{
+			return Redirect::route('post.posts.index');
+		}
+
+        return View::make('post.posts.edit', compact('post'));
 	}
 
 	/**
@@ -62,7 +93,21 @@ class PostsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$input = array_except(Input::all(), '_method');
+		$valid = Validator::make($input, Post::$rules);
+
+		if ($valid->passes())
+		{
+			$post = $this->post->find($id);
+			$post->update($input);
+
+			return View::make('post.posts.show', $id);
+		}
+
+		return Redirect::route('post.posts.edit', $id)
+			->withInput()
+			->withErrors($valid)
+			->with('message', 'Error: Unable to validate record');
 	}
 
 	/**
@@ -73,7 +118,9 @@ class PostsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$this->post->find($id)->delete();
+
+		return Redirect::route('post.posts.index');
 	}
 
 }

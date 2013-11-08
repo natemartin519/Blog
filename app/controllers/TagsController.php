@@ -2,6 +2,13 @@
 
 class TagsController extends BaseController {
 
+	protected $tag;
+
+	public function __construct(Tag $tag)
+	{
+		$this->tag = $tag;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,7 +16,9 @@ class TagsController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('tags.index');
+		$tag = $this->tag->all();
+
+        return View::make('tag.tags.index', compact('tags'));
 	}
 
 	/**
@@ -19,7 +28,7 @@ class TagsController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('tags.create');
+        return View::make('tag.tags.create');
 	}
 
 	/**
@@ -29,7 +38,20 @@ class TagsController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::all();
+		$valid = Validator::make($input, Tag::$rules);
+
+		if ($valid->passes())
+		{
+			$this->tag->create($input);
+
+			return Redirect::route('tag.tags.index');
+		}
+
+		return Redirect::route('tag.tags.create')
+			->withInput()
+			->withErrors($valid)
+			->with('message', 'Error: Unable to validate record');
 	}
 
 	/**
@@ -40,7 +62,9 @@ class TagsController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('tags.show');
+		$tag = $this->tag->findOrfail($id);		
+
+        return View::make('tag.tags.show', compact('tag'));
 	}
 
 	/**
@@ -51,7 +75,14 @@ class TagsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('tags.edit');
+		$tag = $this->tag->find($id);
+
+		if (is_null($tag))
+		{
+			return Redirect::route('tag.tags.index');
+		}
+
+        return View::make('tag.tags.edit', compact('tag'));
 	}
 
 	/**
@@ -62,7 +93,21 @@ class TagsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$input = array_except(Input::all(), '_method');
+		$valid = Validator::make($input, Tag::$rules);
+
+		if ($valid->passes())
+		{
+			$tag = $this->tag->find($id);
+			$tag->update($input);
+
+			return View::make('tag.tags.show', $id)
+		}
+
+		return Redirect::route('tag.tags.edit', $id)
+			->withInput()
+			->withErrors($valid)
+			->with('message', 'Error: Unable to validate record');
 	}
 
 	/**
@@ -73,7 +118,9 @@ class TagsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$this->tag->find($id)->delete();
+
+		return Redirect::route('tag.tags.index');
 	}
 
 }
