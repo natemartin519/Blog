@@ -62,7 +62,7 @@ class CommentsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$comment = $this->comment->findOrFail($id)
+		$comment = $this->comment->findOrFail($id);
 
         return View::make('comments.show', compact('comment'));
 	}
@@ -75,7 +75,7 @@ class CommentsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$comment $this->comment->find($id);
+		$comment = $this->comment->find($id);
 
 		if (is_null($comment))
 		{
