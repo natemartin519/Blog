@@ -18,7 +18,7 @@ class CommentsController extends BaseController {
 	{
 		$comments = $this->comment->all();
 
-        return View::make('comment.comments.index', compact('comments'));
+        return View::make('comments.index', compact('comments'));
 	}
 
 	/**
@@ -28,7 +28,7 @@ class CommentsController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('comment.comments.create');
+        return View::make('comments.create');
 	}
 
 	/**
@@ -45,10 +45,10 @@ class CommentsController extends BaseController {
 		{
 			$this->comment->create($input);
 
-			return Redirect::route('comment.comments.index');
+			return Redirect::route('comments.index');
 		}
 
-		return Request::route('comment.comments.create')
+		return Request::route('comments.create')
 			->withInputs()
 			->withErrors($valid)
 			->with('message', 'Error:  Unable to validate record');
@@ -64,7 +64,7 @@ class CommentsController extends BaseController {
 	{
 		$comment = $this->comment->findOrFail($id)
 
-        return View::make('comment.comments.show', compact('comment'));
+        return View::make('comments.show', compact('comment'));
 	}
 
 	/**
@@ -79,10 +79,10 @@ class CommentsController extends BaseController {
 
 		if (is_null($comment))
 		{
-			return Redirect::route('post.posts.index');
+			return Redirect::route('comments.index');
 		}
 
-        return View::make('comment.comments.edit', compact('comment'));
+        return View::make('comments.edit', compact('comment'));
 	}
 
 	/**
@@ -101,10 +101,10 @@ class CommentsController extends BaseController {
 			$comment = $this->comment->find($id);
 			$comment->update($input);
 
-			return View::make('comment.comments.show', $id);
+			return View::make('comments.show', $id);
 		}
 
-		return Redirect::route('comment.comments.edit', $id)
+		return Redirect::route('comments.edit', $id)
 			->withInput()
 			->withErrors($valid)
 			->with('message', 'Error:  Unable to validate record');
@@ -120,7 +120,7 @@ class CommentsController extends BaseController {
 	{
 		$this->comment->find($id)->delete();
 
-		return Redirect::route('comment.comments.index');
+		return Redirect::route('comments.index');
 	}
 
 }

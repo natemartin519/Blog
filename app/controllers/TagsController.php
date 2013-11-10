@@ -18,7 +18,7 @@ class TagsController extends BaseController {
 	{
 		$tag = $this->tag->all();
 
-        return View::make('tag.tags.index', compact('tags'));
+        return View::make('tags.index', compact('tags'));
 	}
 
 	/**
@@ -28,7 +28,7 @@ class TagsController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('tag.tags.create');
+        return View::make('tags.create');
 	}
 
 	/**
@@ -45,10 +45,10 @@ class TagsController extends BaseController {
 		{
 			$this->tag->create($input);
 
-			return Redirect::route('tag.tags.index');
+			return Redirect::route('tags.index');
 		}
 
-		return Redirect::route('tag.tags.create')
+		return Redirect::route('tags.create')
 			->withInput()
 			->withErrors($valid)
 			->with('message', 'Error: Unable to validate record');
@@ -64,7 +64,7 @@ class TagsController extends BaseController {
 	{
 		$tag = $this->tag->findOrfail($id);		
 
-        return View::make('tag.tags.show', compact('tag'));
+        return View::make('tags.show', compact('tag'));
 	}
 
 	/**
@@ -79,10 +79,10 @@ class TagsController extends BaseController {
 
 		if (is_null($tag))
 		{
-			return Redirect::route('tag.tags.index');
+			return Redirect::route('tags.index');
 		}
 
-        return View::make('tag.tags.edit', compact('tag'));
+        return View::make('tags.edit', compact('tag'));
 	}
 
 	/**
@@ -101,10 +101,10 @@ class TagsController extends BaseController {
 			$tag = $this->tag->find($id);
 			$tag->update($input);
 
-			return View::make('tag.tags.show', $id)
+			return View::make('tags.show', $id)
 		}
 
-		return Redirect::route('tag.tags.edit', $id)
+		return Redirect::route('tags.edit', $id)
 			->withInput()
 			->withErrors($valid)
 			->with('message', 'Error: Unable to validate record');
@@ -120,7 +120,7 @@ class TagsController extends BaseController {
 	{
 		$this->tag->find($id)->delete();
 
-		return Redirect::route('tag.tags.index');
+		return Redirect::route('tags.index');
 	}
 
 }

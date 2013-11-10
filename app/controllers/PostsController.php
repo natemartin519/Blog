@@ -18,7 +18,7 @@ class PostsController extends BaseController {
 	{
 		$posts = $this->post->all();
 
-        return View::make('post.posts.index', compact('posts'));
+        return View::make('posts.index', compact('posts'));
 	}
 
 	/**
@@ -28,7 +28,7 @@ class PostsController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('post.posts.create');
+        return View::make('posts.create');
 	}
 
 	/**
@@ -45,10 +45,10 @@ class PostsController extends BaseController {
 		{
 			$this->post->create($input);
 
-			return Redirect::route('post.posts.index');
+			return Redirect::route('posts.index');
 		}
 
-		return Redirect::route('post.posts.create')
+		return Redirect::route('posts.create')
 			->withInput()
 			->withErrors($valid)
 			->with('message', 'Error: Unable to validate record');
@@ -64,7 +64,7 @@ class PostsController extends BaseController {
 	{
 		$post = $this->post->findOrFail($id);
 
-        return View::make('post.posts.show', compact('post'));
+        return View::make('posts.show', compact('post'));
 	}
 
 	/**
@@ -79,10 +79,10 @@ class PostsController extends BaseController {
 
 		if (is_null($post))
 		{
-			return Redirect::route('post.posts.index');
+			return Redirect::route('posts.index');
 		}
 
-        return View::make('post.posts.edit', compact('post'));
+        return View::make('posts.edit', compact('post'));
 	}
 
 	/**
@@ -101,10 +101,10 @@ class PostsController extends BaseController {
 			$post = $this->post->find($id);
 			$post->update($input);
 
-			return View::make('post.posts.show', $id);
+			return View::make('posts.show', $id);
 		}
 
-		return Redirect::route('post.posts.edit', $id)
+		return Redirect::route('posts.edit', $id)
 			->withInput()
 			->withErrors($valid)
 			->with('message', 'Error: Unable to validate record');
@@ -120,7 +120,7 @@ class PostsController extends BaseController {
 	{
 		$this->post->find($id)->delete();
 
-		return Redirect::route('post.posts.index');
+		return Redirect::route('posts.index');
 	}
 
 }

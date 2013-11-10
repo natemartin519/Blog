@@ -18,7 +18,7 @@ class UsersController extends BaseController {
 	{
 		$users = $this->user->all();
 
-        return View::make('user.users.index', compact('users'));
+        return View::make('users.index', compact('users'));
 	}
 
 	/**
@@ -28,7 +28,7 @@ class UsersController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('user.users.create');
+        return View::make('users.create');
 	}
 
 	/**
@@ -45,10 +45,10 @@ class UsersController extends BaseController {
 		{
 			$this->user->create($input);
 
-			return Redirect::route('user.users.index');
+			return Redirect::route('users.index');
 		}
 
-		return Redirect::route('user.users.create')
+		return Redirect::route('users.create')
 			->withInput()
 			->withErrors($valid)
 			->with('message', 'Error: Unable to validate record');
@@ -62,7 +62,7 @@ class UsersController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('user.users.show', compact('user'));
+        return View::make('users.show', compact('user'));
 	}
 
 	/**
@@ -77,10 +77,10 @@ class UsersController extends BaseController {
 
 		if (is_null($post))
 		{
-			return Redirect::route('user.users.index');
+			return Redirect::route('users.index');
 		}
 
-        return View::make('user.users.edit', compact('user'));
+        return View::make('users.edit', compact('user'));
 	}
 
 	/**
@@ -98,10 +98,10 @@ class UsersController extends BaseController {
 			$user = $this->user->find($id);
 			$user->update($input);
 
-			return View::make('user.users.show', $id);
+			return View::make('users.show', $id);
 		}
 
-		return Redirect::route('user.users.edit', $id)
+		return Redirect::route('users.edit', $id)
 			->withInput()
 			->withErrors($valid)
 			->wiht('message', 'Error: Unable to validate record');
@@ -117,7 +117,7 @@ class UsersController extends BaseController {
 	{
 		$this->post->find($id)->delete();
 
-		return Redirect::route('user.users.index');
+		return Redirect::route('users.index');
 	}
 
 }
