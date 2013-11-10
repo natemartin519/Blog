@@ -3,10 +3,12 @@
 #### Current Status/TODO List
 - [x] Create database tables.
 - [x] Setup barebone routes, controllers, models, and views.
-- [ ] Add simple functionality to the controllers.
-- [ ] Add models functionality.
-- [ ] Add simple functionality to the views.
-- [ ] Add authentication to make/edit a blog post.
+- [x] Add simple functionality to the controllers.
+- [x] Add models functionality.
+- [x] Add simple functionality to the views.
+- [ ] Add authentication to make or edit a post.
+- [ ] Add authentication to make/show/edit a user.
+- [ ] Add tags.
 - [ ] Add user comments.
 - [ ] Make it look pretty with Bootstrap.
 
