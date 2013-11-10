@@ -101,7 +101,7 @@ class CommentsController extends BaseController {
 			$comment = $this->comment->find($id);
 			$comment->update($input);
 
-			return View::make('comments.show', $id);
+			return Redirect::route('comments.index');
 		}
 
 		return Redirect::route('comments.edit', $id)

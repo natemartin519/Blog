@@ -7,7 +7,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public $timestamps = false;
 
-	public static $rules = array();
+	public static $rules = array(
+		'password' => 'required',
+		'email' => 'required',
+		'access_level' => 'required'
+		);
 
 	/**
 	 * The database table used by the model.

@@ -101,7 +101,7 @@ class PostsController extends BaseController {
 			$post = $this->post->find($id);
 			$post->update($input);
 
-			return View::make('posts.show', $id);
+			return Redirect::route('posts.index');
 		}
 
 		return Redirect::route('posts.edit', $id)

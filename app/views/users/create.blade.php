@@ -27,6 +27,7 @@
 		{{ Form::label('message', 'Not Implemented')}}
 	</li>
 </ul>
+{{ Form::close() }}
 
 @if($errors->any())
 <ul>

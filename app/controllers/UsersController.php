@@ -98,7 +98,7 @@ class UsersController extends BaseController {
 			$user = $this->user->find($id);
 			$user->update($input);
 
-			return View::make('users.show', $id);
+			return Redirect::route('users.index');
 		}
 
 		return Redirect::route('users.edit', $id)

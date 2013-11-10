@@ -14,6 +14,7 @@
 		{{ Form::submit('Submit', array('class' => 'btn btn-success'))}}
 	</li>
 </ul>
+{{ Form::close() }}
 
 @if($errors->any())
 <ul>
