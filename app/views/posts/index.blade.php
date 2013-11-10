@@ -13,6 +13,7 @@
 				<th>User ID</th>
 				<th>Title</th>
 				<th>Body</th>
+				<th>Status</th>
 			</tr>
 		</thead>
 
@@ -23,6 +24,7 @@
 				<td>{{ $post->user_id }}</td>
 				<td>{{ $post->header }}</td>
 				<td>{{ $post->body }}</td>
+				<td>{{ $post->status }}</td>
 				<td>{{ link_to_route('posts.show', 'Show', array($post->id), array('class' => 'btn btn-primary')) }}</td>
 				<td>{{ link_to_route('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-info')) }}</td>
 				<td>

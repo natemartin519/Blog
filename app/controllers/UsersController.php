@@ -75,7 +75,7 @@ class UsersController extends BaseController {
 	{
 		$user = $this->user->find($id);
 
-		if (is_null($post))
+		if (is_null($user))
 		{
 			return Redirect::route('users.index');
 		}

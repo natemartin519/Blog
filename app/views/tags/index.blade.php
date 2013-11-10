@@ -10,9 +10,7 @@
 	<table class="table table-striped table-bordered table-hover">
 		<thead>
 			<tr>
-				<th>User ID</th>
-				<th>Title</th>
-				<th>Body</th>
+				<th>Tag Name</th>
 			</tr>
 		</thead>
 
@@ -20,9 +18,7 @@
 
 			@foreach($tags as $tag)
 			<tr>
-				<td>{{ $tag->user_id }}</td>
-				<td>{{ $tag->header }}</td>
-				<td>{{ $tag->body }}</td>
+				<td>{{ $tag->name }}</td>
 				<td>{{ link_to_route('tags.show', 'Show', array($tag->id), array('class' => 'btn btn-primary')) }}</td>
 				<td>{{ link_to_route('tags.edit', 'Edit', array($tag->id), array('class' => 'btn btn-info')) }}</td>
 				<td>

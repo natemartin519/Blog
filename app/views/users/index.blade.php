@@ -11,8 +11,8 @@
 		<thead>
 			<tr>
 				<th>User ID</th>
-				<th>Title</th>
-				<th>Body</th>
+				<th>Email Address</th>
+				<th>Access Level</th>
 			</tr>
 		</thead>
 
@@ -20,9 +20,9 @@
 
 			@foreach($users as $user)
 			<tr>
-				<td>{{ $user->user_id }}</td>
-				<td>{{ $user->header }}</td>
-				<td>{{ $user->body }}</td>
+				<td>{{ $user->id }}</td>
+				<td>{{ $user->email }}</td>
+				<td>{{ $user->access_level }}</td>
 				<td>{{ link_to_route('users.show', 'Show', array($user->id), array('class' => 'btn btn-primary')) }}</td>
 				<td>{{ link_to_route('users.edit', 'Edit', array($user->id), array('class' => 'btn btn-info')) }}</td>
 				<td>

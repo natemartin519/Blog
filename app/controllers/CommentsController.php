@@ -41,7 +41,7 @@ class CommentsController extends BaseController {
 		$input = Input::all();
 		$valid = Validator::make($input, Comment::$rules);
 
-		if ($valid = passes())
+		if ($valid->passes())
 		{
 			$this->comment->create($input);
 
