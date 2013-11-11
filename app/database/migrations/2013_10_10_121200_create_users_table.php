@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 			$table->string('password');
 			$table->string('email');
-			$table->integer('access_level');
+			$table->integer('admin_access');
 		});
 	}
 

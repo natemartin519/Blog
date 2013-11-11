@@ -4,7 +4,7 @@ class HomeController extends BaseController {
 
 	public function showIndex()
 	{
-		return View::make('home.index');
+		return Redirect::to('posts');
 	}
 
 	public function showLogin()
@@ -44,7 +44,7 @@ class HomeController extends BaseController {
 	public function postRegister()
 	{
 		$input = Input::all();
-		$rules = array('email' => 'required|unique:users|email', 'password' => 'required');
+		$rules = array('email' => 'required|unique:users|email', 'password' => 'required|confirmed');
 
 		$valid = Validator::make($input, $rules);
 
@@ -56,7 +56,7 @@ class HomeController extends BaseController {
 			$user = new User();
 			$user->email = $input['email'];
 			$user->password = $password;
-			$user->access_level = 1;
+			$user->admin_access = 0;
 
 			$user->save();
 

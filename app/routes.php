@@ -19,14 +19,9 @@ Route::get('logout', 'HomeController@logout');
 Route::post('login', 'HomeController@postLogin');
 Route::post('register', 'HomeController@postRegister');
 
-
-Route::group(array('before' => 'auth'), function()
-{
-	Route::resource('posts', 'PostsController');
-	Route::resource('comments', 'CommentsController');
-	Route::resource('users', 'UsersController');
-	Route::resource('tags', 'TagsController');	
-});
-
+Route::resource('posts', 'PostsController');
+Route::resource('comments', 'CommentsController');
+Route::resource('users', 'UsersController');
+Route::resource('tags', 'TagsController');	
 
 

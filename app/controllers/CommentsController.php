@@ -6,6 +6,8 @@ class CommentsController extends BaseController {
 
 	public function __construct(Comment $comment)
 	{
+		$this->beforeFilter('auth');
+
 		$this->comment = $comment;
 	}
 

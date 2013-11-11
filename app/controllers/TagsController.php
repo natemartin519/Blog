@@ -6,6 +6,8 @@ class TagsController extends BaseController {
 
 	public function __construct(Tag $tag)
 	{
+		$this->beforeFilter('auth');
+
 		$this->tag = $tag;
 	}
 

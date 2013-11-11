@@ -15,6 +15,7 @@
 
 				{{ Form::text('email', '', array('placeholder' => 'Email')) }} <br>
 				{{ Form::password('password', '', array('placeholder' => 'Password')) }} <br>
+				{{ Form::password('password_confirmation', '', array('placeholder' => 'Password')) }} <br>
 				{{ Form::submit('Register', array('class' => 'btn btn-success')) }}
 				{{ HTML::link('/', 'Cancel', array('class' => 'btn btn-danger')) }}
 			{{ Form::close()}}

@@ -15,8 +15,8 @@
 		{{ Form::password('password') }}
 	</li>
 	<li>
-		{{ Form::label('confirm', 'Password:') }}
-		{{ Form::password('confirm') }}
+		{{ Form::label('password_confirmation', 'Password:') }}
+		{{ Form::password('password_confirmation') }}
 	</li>	
 	<li>
 		{{ Form::label('access_level', "Access Level:") }}

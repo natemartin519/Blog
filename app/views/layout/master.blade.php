@@ -26,14 +26,23 @@
 		<div class="span2">
 			<ul class="nav nav-list well">
 				@if(Auth::user())
-				<li class="nav-header">{{ Auth::user()->email }}</li>
+				<li class="nav-header">
+					{{ Auth::user()->email }}
+
+					@if(Auth::user()->admin_access) 
+						(Admin)
+					@endif
+				</li>
+
 				<li>{{ HTML::link('posts', 'View Post') }}</li>
 				<li>{{ HTML::link('users', 'View Users') }}</li>
 				<li>{{ HTML::link('comments', 'View Comments') }}</li>
 				<li>{{ HTML::link('tags', 'View Tags') }}</li>
 				<li>{{ HTML::link('logout', 'Logout') }}</li>
+				
 				@else
 				<li>{{ HTML::link('login', 'Login') }}</li>
+
 				@endif
 			</ul>
 		</div>
