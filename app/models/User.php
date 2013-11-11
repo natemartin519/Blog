@@ -4,7 +4,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
-
+	protected $guarded = array();
 	public $timestamps = false;
 
 	public static $rules = array(
@@ -12,13 +12,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'email' => 'required',
 		'access_level' => 'required'
 		);
-
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -56,5 +49,4 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->email;
 	}
-
 }

@@ -117,7 +117,7 @@ class UsersController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$this->post->find($id)->delete();
+		$this->user->find($id)->delete();
 
 		return Redirect::route('users.index');
 	}

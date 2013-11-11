@@ -1,4 +1,4 @@
-# Bloging Site Using Laravel PHP Framework. 
+# Blog Site with Laravel PHP Framework. 
 
 #### Current Status/TODO List
 - [x] Create database tables.
@@ -6,11 +6,12 @@
 - [x] Add simple functionality to the controllers.
 - [x] Add models functionality.
 - [x] Add simple functionality to the views.
-- [ ] Add authentication to make or edit a post.
-- [ ] Add authentication to make/show/edit a user.
-- [ ] Add tags.
-- [ ] Add user comments.
-- [ ] Make it look pretty with Bootstrap.
+- [x] Add authentication to add, show, or edit.
+- [ ] Show posts for non users.
+- [ ] Make admin and non-admin users.
+- [ ] Allow non-admin user to add a comment to a post.
+- [ ] Add tags to posts.
+- [ ] Make it look pretty with Bootstrap3.
 
 
 #### Setup

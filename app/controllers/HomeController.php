@@ -2,22 +2,75 @@
 
 class HomeController extends BaseController {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
-
-	public function showWelcome()
+	public function showIndex()
 	{
-		return View::make('hello');
+		return View::make('home.index');
 	}
 
+	public function showLogin()
+	{
+		return View::make('home.login');
+	}
+
+	public function postLogin()
+	{
+		$input = Input::all();
+		$rules = array('email' => 'required', 'password' => 'required');
+
+		$valid = Validator::make($input, $rules);
+
+		if ($valid->passes())
+		{
+			$credentials = array('email' => $input['email'], 'password' => $input['password']);
+
+			if (Auth::attempt($credentials))
+			{
+				return Redirect::to('/');
+			}
+			else
+			{
+				return Redirect::to('login');
+			}
+		}
+
+		return Redirect::to('login')->withErrors($valid);
+	}
+
+	public function showRegister()
+	{
+		return View::make('home.register');
+	}
+
+	public function postRegister()
+	{
+		$input = Input::all();
+		$rules = array('email' => 'required|unique:users|email', 'password' => 'required');
+
+		$valid = Validator::make($input, $rules);
+
+		if($valid->passes())
+		{
+			$password = $input['password'];
+			$password = Hash::make($password);
+
+			$user = new User();
+			$user->email = $input['email'];
+			$user->password = $password;
+			$user->access_level = 1;
+
+			$user->save();
+
+			return Redirect::to('login');
+		} 
+
+		return Redirect::to('register')
+			->withInput()
+			->withErrors($valid);
+	}
+
+	public function logout()
+	{
+		Auth::logout();
+		return Redirect::to('/');
+	}
 }

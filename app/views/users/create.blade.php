@@ -16,15 +16,14 @@
 	</li>
 	<li>
 		{{ Form::label('confirm', 'Password:') }}
-		{{ Form::password('confirm') }}
+		{{ Form::password('confirm', array('disabled')) }}
 	</li>	
 	<li>
 		{{ Form::label('access_level', "Access Level:") }}
 		{{ Form::text('access_level') }}
 	</li>
 	<li>
-		{{ Form::submit('Submit', array('class' => 'btn btn-success', 'disabled'))}}
-		{{ Form::label('message', 'Not Implemented')}}
+		{{ Form::submit('Submit', array('class' => 'btn btn-success'))}}
 	</li>
 </ul>
 {{ Form::close() }}

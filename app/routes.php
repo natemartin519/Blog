@@ -11,24 +11,22 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', 'HomeController@showIndex');
+Route::get('login', 'HomeController@showLogin');
+Route::get('register', 'HomeController@showRegister');
+Route::get('logout', 'HomeController@logout');
+
+Route::post('login', 'HomeController@postLogin');
+Route::post('register', 'HomeController@postRegister');
+
+
+Route::group(array('before' => 'auth'), function()
 {
-	return View::make('hello');
+	Route::resource('posts', 'PostsController');
+	Route::resource('comments', 'CommentsController');
+	Route::resource('users', 'UsersController');
+	Route::resource('tags', 'TagsController');	
 });
 
-Route::get('login', function()
-{
-	$title = "Admin Login";
-	return View::make('login')
-		->with('title', $title);
-});
 
-Route::post('login', function()
-{
-	return Redirect::intended();
-});
 
-Route::resource('posts', 'PostsController');
-Route::resource('comments', 'CommentsController');
-Route::resource('users', 'UsersController');
-Route::resource('tags', 'TagsController');
