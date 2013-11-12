@@ -58,7 +58,7 @@ class UsersController extends BaseController {
 			return Redirect::to('login');
 		} 
 
-		return Redirect::to('register')
+		return Redirect::route('users.create')
 			->withInput()
 			->withErrors($valid);
 	}
