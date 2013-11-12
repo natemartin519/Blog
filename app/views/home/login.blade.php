@@ -12,11 +12,10 @@
 						{{ implode('', $errors->all('<li class="error">:message</li>')) }}
 					</div>
 				@endif
-
 				{{ Form::text('email', '', array('placeholder' => 'Email')) }} <br>
 				{{ Form::password('password', '', array('placeholder' => 'Password')) }} <br>
 				{{ Form::submit('Login', array('class' => 'btn btn-success')) }}
-				{{ HTML::link('register', 'Register', array('class' => 'btn btn-primary')) }}
+				{{ HTML::linkRoute('users.create', 'Register', null, array('class' => 'btn btn-primary')) }}
 			{{ Form::close()}}
 		</div>
 	</div>

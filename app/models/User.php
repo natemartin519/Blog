@@ -8,10 +8,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public $timestamps = false;
 
 	public static $rules = array(
-		'password' => 'required',
-		'email' => 'required',
-		'access_level' => 'required'
+		'password' => 'required|confirmed',
+		'email' => 'required|unique:users|email',
+		'username' => 'required|unique:users'
 		);
+
+	public function admin()
+	{
+		if ($this->access_level == 1)
+		{
+			return true;
+		}
+
+		return false;
+	}
 
 	/**
 	 * The attributes excluded from the model's JSON form.

@@ -8,9 +8,10 @@
 - [x] Add simple functionality to the views.
 - [x] Add authentication to add, show, or edit.
 - [x] Show posts for guests.
-- [ ] Make admin and user access levels.
+- [x] Make admin and user access levels.
 - [ ] Allow a user to add a comment to a post.
 - [ ] Add tags to posts.
+- [ ] Flush out the backend for admin and users.
 - [ ] Make it look pretty with Bootstrap3.
 
 

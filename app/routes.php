@@ -12,12 +12,11 @@
 */
 
 Route::get('/', 'HomeController@showIndex');
-Route::get('login', 'HomeController@showLogin');
-Route::get('register', 'HomeController@showRegister');
-Route::get('logout', 'HomeController@logout');
 
+Route::get('login', 'HomeController@showLogin');
 Route::post('login', 'HomeController@postLogin');
-Route::post('register', 'HomeController@postRegister');
+
+Route::get('logout', 'HomeController@logout');
 
 Route::resource('posts', 'PostsController');
 Route::resource('comments', 'CommentsController');

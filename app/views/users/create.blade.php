@@ -1,38 +1,26 @@
-@extends ('layout.master')
+@extends('layout.master')
 
 @section('content')
-
-<h1>Create User</h1>
-
-{{ Form::open(array('route' => 'users.store')) }}
-<ul>
-	<li>
-		{{ Form::label('email', 'Email Address:') }}
-		{{ Form::text('email') }}
-	</li>
-	<li>
-		{{ Form::label('password', 'Password:') }}
-		{{ Form::password('password') }}
-	</li>
-	<li>
-		{{ Form::label('password_confirmation', 'Password:') }}
-		{{ Form::password('password_confirmation', array('disabled')) }}
-	</li>	
-	<li>
-		{{ Form::label('access_level', "Access Level:") }}
-		{{ Form::text('access_level') }}
-	</li>
-	<li>
-		{{ Form::submit('Submit', array('class' => 'btn btn-success'))}}
-	</li>
-</ul>
-{{ Form::close() }}
-
-@if($errors->any())
-<ul>
-	{{ inplode('', $errors->all('<li class="error">:message</li>')) }}
-</ul>
-
-@endif
+<div class="row">
+	<div class="span4 offset1">
+		<div class="well">
+			<legend>Register</legend>
+			{{ Form::open(array('route' => 'users.store')) }}
+				@if($errors->any())
+					<div class="alert alert-error">
+						<a href="#" class='close' data-dismiss='alert'>&times;</a>
+						{{ implode('', $errors->all('<li class="error">:message</li>')) }}
+					</div>
+				@endif
+				{{ Form::text('username', '', array('placeholder' => 'Username')) }} <br>
+				{{ Form::text('email', '', array('placeholder' => 'Email')) }} <br>
+				{{ Form::password('password', '', array('placeholder' => 'Password')) }} <br>
+				{{ Form::password('password_confirmation', '', array('placeholder' => 'Password')) }} <br>
+				{{ Form::submit('Register', array('class' => 'btn btn-success')) }}
+				{{ HTML::link('/', 'Cancel', array('class' => 'btn btn-danger')) }}
+			{{ Form::close()}}
+		</div>
+	</div>
+</div>
 
 @stop

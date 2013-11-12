@@ -6,8 +6,7 @@ class UsersController extends BaseController {
 
 	public function __construct(User $user)
 	{
-		$this->beforeFilter('auth');
-		
+		$this->beforeFilter('admin', array('except' => array('create', 'store')));		
 		$this->user = $user;
 	}
 
@@ -43,17 +42,25 @@ class UsersController extends BaseController {
 		$input = Input::all();
 		$valid = Validator::make($input, User::$rules);
 
-		if ($valid->passes())
+		if($valid->passes())
 		{
-			$this->user->create($input);
+			$password = $input['password'];
+			$password = Hash::make($password);
 
-			return Redirect::route('users.index');
-		}
+			$user = new User();
+			$user->email = $input['email'];
+			$user->username = $input['username'];
+			$user->password = $password;
+			$user->access_level = 0;
 
-		return Redirect::route('users.create')
+			$user->save();
+
+			return Redirect::to('login');
+		} 
+
+		return Redirect::to('register')
 			->withInput()
-			->withErrors($valid)
-			->with('message', 'Error: Unable to validate record');
+			->withErrors($valid);
 	}
 
 	/**
@@ -64,7 +71,12 @@ class UsersController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$user = $this->user->findOrfail($id);
+		$user = $this->user->find($id);
+
+		if (is_null($user))
+		{
+			return Redirect::route('users.index');
+		}
 
         return View::make('users.show', compact('user'));
 	}
@@ -95,20 +107,31 @@ class UsersController extends BaseController {
 	 */
 	public function update($id)
 	{
+		$user = $this->user->find($id);
+
+		if (is_null($user))
+		{
+			return Redirect::route('users.index');
+		}
+
 		$input = array_except(Input::all(), '_method');
-		$valid = Validator::make($input, User::$rules);
 
-		if ($valid->passes()){
-			$user = $this->user->find($id);
+		$rules = array(
+			'email' => 'required|unique:users,email,' . $id . '|email',
+			'username' => 'required|unique:users,username,' . $id,
+			'access_level' => 'required|in:0,1,2'
+		);
+
+		$valid = Validator::make($input, $rules);
+
+		if ($valid->passes()){			
 			$user->update($input);
-
 			return Redirect::route('users.index');
 		}
 
 		return Redirect::route('users.edit', $id)
 			->withInput()
-			->withErrors($valid)
-			->wiht('message', 'Error: Unable to validate record');
+			->withErrors($valid);
 	}
 
 	/**
@@ -119,9 +142,15 @@ class UsersController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$this->user->find($id)->delete();
+		$user = $this->user->find($id);
+
+		if (is_null($user))
+		{
+			return Redirect::route('users.index');
+		}
+
+		$user->delete();
 
 		return Redirect::route('users.index');
 	}
-
 }

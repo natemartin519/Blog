@@ -17,7 +17,7 @@
 </head>
 <body>
 	<div class="row-fluid">
-		<div class="span12 well">
+		<div class="span16 well">
 			<h1>My Blog</h1>
 		</div>
 	</div>
@@ -25,25 +25,30 @@
 	<div class="row-fluid">
 		<div class="span2">
 			<ul class="nav nav-list well">
-				@if(Auth::user())
-				<li class="nav-header">
-					{{ Auth::user()->email }}
+				@if(Auth::check())
+					<li class="nav-header">
+						{{ Auth::user()->username }}
 
-					@if(Auth::user()->admin_access) 
-						(Admin)
-					@endif
-				</li>
+						@if(Auth::user()->admin()) 
+							(Admin)
+						@endif
+					</li>
+					
+					@if(Auth::user()->admin())						
+						<li>{{ HTML::link('posts', 'Edit Posts') }}</li>
+						<li>{{ HTML::link('comments', 'Edit Comments') }}</li>
+						<li>{{ HTML::link('tags', 'Edit Tags') }}</li>
+						<li>{{ HTML::link('users', 'Edit Users') }}</li>											
+						<li>{{ HTML::link('logout', 'Logout') }}</li>
+					@else
+						<li>{{ HTML::link('comments', 'Edit Your Comments') }}</li>
+						<li>{{ HTML::link('users', 'Edit Your Profile') }}</li>
+						<li>{{ HTML::link('logout', 'Logout') }}</li>		
+					@endif		
 
-				<li>{{ HTML::link('posts', 'View Post') }}</li>
-				<li>{{ HTML::link('users', 'View Users') }}</li>
-				<li>{{ HTML::link('comments', 'View Comments') }}</li>
-				<li>{{ HTML::link('tags', 'View Tags') }}</li>
-				<li>{{ HTML::link('logout', 'Logout') }}</li>
-				
 				@else
-				<li>{{ HTML::link('login', 'Login') }}</li>
-
-				@endif
+					<li>{{ HTML::link('login', 'Login') }}</li>
+				@endif				
 			</ul>
 		</div>
 
