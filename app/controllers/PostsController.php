@@ -1,13 +1,13 @@
 <?php
 
-class PostsController extends BaseController {
+class PostsController extends BaseController 
+{
 
 	protected $post;
 
 	public function __construct(Post $post) 
 	{
-		$this->beforeFilter('auth', array('only' => array('create', 'store', 'edit', 'update', 'destroy')));
-
+		$this->beforeFilter('auth', array('only' => array('create', 'store', 'edit', 'update', 'destroy')));		
 		$this->post = $post;
 	}
 
@@ -19,7 +19,6 @@ class PostsController extends BaseController {
 	public function index()
 	{
 		$posts = $this->post->all();
-
         return View::make('posts.index', compact('posts'));
 	}
 
@@ -43,10 +42,8 @@ class PostsController extends BaseController {
 		$input = Input::all();
 		$valid = Validator::make($input, Post::$rules);
 
-		if ($valid->passes())
-		{
+		if ($valid->passes()) {
 			$this->post->create($input);
-
 			return Redirect::route('posts.index');
 		}
 
@@ -65,7 +62,6 @@ class PostsController extends BaseController {
 	public function show($id)
 	{
 		$post = $this->post->findOrFail($id);
-
         return View::make('posts.show', compact('post'));
 	}
 
@@ -79,8 +75,7 @@ class PostsController extends BaseController {
 	{
 		$post = $this->post->find($id);
 
-		if (is_null($post))
-		{
+		if (is_null($post)) {
 			return Redirect::route('posts.index');
 		}
 
@@ -98,8 +93,7 @@ class PostsController extends BaseController {
 		$input = array_except(Input::all(), '_method');
 		$valid = Validator::make($input, Post::$rules);
 
-		if ($valid->passes())
-		{
+		if ($valid->passes()) {
 			$post = $this->post->find($id);
 			$post->update($input);
 
@@ -121,8 +115,6 @@ class PostsController extends BaseController {
 	public function destroy($id)
 	{
 		$this->post->find($id)->delete();
-
 		return Redirect::route('posts.index');
 	}
-
 }

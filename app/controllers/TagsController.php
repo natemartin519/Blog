@@ -1,13 +1,13 @@
 <?php
 
-class TagsController extends BaseController {
+class TagsController extends BaseController 
+{
 
 	protected $tag;
 
 	public function __construct(Tag $tag)
 	{
 		$this->beforeFilter('admin');
-
 		$this->tag = $tag;
 	}
 
@@ -19,7 +19,6 @@ class TagsController extends BaseController {
 	public function index()
 	{
 		$tags = $this->tag->all();
-
         return View::make('tags.index', compact('tags'));
 	}
 
@@ -43,10 +42,8 @@ class TagsController extends BaseController {
 		$input = Input::all();
 		$valid = Validator::make($input, Tag::$rules);
 
-		if ($valid->passes())
-		{
+		if ($valid->passes()) {
 			$this->tag->create($input);
-
 			return Redirect::route('tags.index');
 		}
 
@@ -65,7 +62,6 @@ class TagsController extends BaseController {
 	public function show($id)
 	{
 		$tag = $this->tag->findOrfail($id);		
-
         return View::make('tags.show', compact('tag'));
 	}
 
@@ -79,8 +75,7 @@ class TagsController extends BaseController {
 	{
 		$tag = $this->tag->find($id);
 
-		if (is_null($tag))
-		{
+		if (is_null($tag)) {
 			return Redirect::route('tags.index');
 		}
 
@@ -98,8 +93,7 @@ class TagsController extends BaseController {
 		$input = array_except(Input::all(), '_method');
 		$valid = Validator::make($input, Tag::$rules);
 
-		if ($valid->passes())
-		{
+		if ($valid->passes()) {
 			$tag = $this->tag->find($id);
 			$tag->update($input);
 
@@ -121,8 +115,6 @@ class TagsController extends BaseController {
 	public function destroy($id)
 	{
 		$this->tag->find($id)->delete();
-
 		return Redirect::route('tags.index');
 	}
-
 }

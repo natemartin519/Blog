@@ -1,13 +1,13 @@
 <?php
 
-class CommentsController extends BaseController {
+class CommentsController extends BaseController 
+{
 
 	private $comment;
 
 	public function __construct(Comment $comment)
 	{
 		$this->beforeFilter('auth');
-
 		$this->comment = $comment;
 	}
 
@@ -19,7 +19,6 @@ class CommentsController extends BaseController {
 	public function index()
 	{
 		$comments = $this->comment->all();
-
         return View::make('comments.index', compact('comments'));
 	}
 
@@ -43,10 +42,8 @@ class CommentsController extends BaseController {
 		$input = Input::all();
 		$valid = Validator::make($input, Comment::$rules);
 
-		if ($valid->passes())
-		{
+		if ($valid->passes()) {
 			$this->comment->create($input);
-
 			return Redirect::route('comments.index');
 		}
 
@@ -65,7 +62,6 @@ class CommentsController extends BaseController {
 	public function show($id)
 	{
 		$comment = $this->comment->findOrFail($id);
-
         return View::make('comments.show', compact('comment'));
 	}
 
@@ -79,8 +75,7 @@ class CommentsController extends BaseController {
 	{
 		$comment = $this->comment->find($id);
 
-		if (is_null($comment))
-		{
+		if (is_null($comment)) {
 			return Redirect::route('comments.index');
 		}
 
@@ -98,8 +93,7 @@ class CommentsController extends BaseController {
 		$input = array_except(Input::all(), '_method');
 		$valid = Validator::make($input, Comment::$rules);
 
-		if ($valid->passes())
-		{
+		if ($valid->passes()){
 			$comment = $this->comment->find($id);
 			$comment->update($input);
 
@@ -121,8 +115,6 @@ class CommentsController extends BaseController {
 	public function destroy($id)
 	{
 		$this->comment->find($id)->delete();
-
 		return Redirect::route('comments.index');
 	}
-
 }

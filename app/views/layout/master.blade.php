@@ -1,39 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">	
-	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-	<!-- Bootstrap 3
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>	
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet"-->
-	<style>
-		table form { margin-bottom: 0;}
-		form ul { margin-left: 0; list-style: none; }
-		.error { color: red; font-style: italic;}
-	</style>
-	
+	<meta charset="UTF-8">	
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">	
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span16 well">
-			<h1>My Blog</h1>
-		</div>
-	</div>
-
-	<div class="row-fluid">
-		<div class="span2">
-			<ul class="nav nav-list well">
+	<header class="container">
+		<h1>My Blog</h1>
+		<div class="navbar navbar-default">
+			<ul>
 				@if(Auth::check())
-					<li class="nav-header">
-						{{ Auth::user()->username }}
-
-						@if(Auth::user()->admin()) 
-							(Admin)
-						@endif
-					</li>
-					
 					@if(Auth::user()->admin())						
 						<li>{{ HTML::link('posts', 'Edit Posts') }}</li>
 						<li>{{ HTML::link('comments', 'Edit Comments') }}</li>
@@ -46,21 +22,34 @@
 						<li>{{ HTML::link('logout', 'Logout') }}</li>		
 					@endif		
 
+					<li>
+						{{ Auth::user()->username }}
+
+						@if(Auth::user()->admin()) 
+							(Admin)
+						@endif
+					</li>
+
 				@else
 					<li>{{ HTML::link('login', 'Login') }}</li>
 				@endif				
 			</ul>
 		</div>
+	</header>
 
-		<div class="span9">
-			@if (Session::has('message'))
-				<div class="flash alert">
-					<p>{{ Session::get('message') }}</p>
-				</div>
-			@endif
+	<div role="body" class="container">
+		@if (Session::has('message'))
+			<div class="row flash alert"> <!-- bootstrap update -->
+				<p>{{ Session::get('message') }}</p>
+			</div>
+		@endif
 
-			@yield('content')		
-		</div>
+		@yield('content')		
 	</div>
+
+	<footer class="content"></footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>	
 </body>
 </html>

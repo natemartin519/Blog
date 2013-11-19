@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', 'HomeController@showIndex');
+Route::get('/', 'HomeController@getIndex');
 
-Route::get('login', 'HomeController@showLogin');
+Route::get('login', 'HomeController@getLogin');
 Route::post('login', 'HomeController@postLogin');
 
 Route::get('logout', 'HomeController@logout');

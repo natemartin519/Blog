@@ -1,6 +1,7 @@
 <?php
 
-class Tag extends Eloquent {
+class Tag extends Eloquent 
+{
 	protected $guarded = array();
 	public $timestamps = false;
 

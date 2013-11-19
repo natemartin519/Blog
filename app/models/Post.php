@@ -1,6 +1,7 @@
 <?php
 
-class Post extends Eloquent {
+class Post extends Eloquent 
+{
 	protected $guarded = array();
 
 	public static $rules = array(
@@ -8,5 +9,5 @@ class Post extends Eloquent {
 		'header' => 'required',
 		'body' => 'required',
 		'status' => 'required'
-		);
+	);
 }

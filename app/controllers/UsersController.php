@@ -1,7 +1,7 @@
 <?php
 
-class UsersController extends BaseController {
-
+class UsersController extends BaseController 
+{
 	protected $user;
 
 	public function __construct(User $user)
@@ -18,7 +18,6 @@ class UsersController extends BaseController {
 	public function index()
 	{
 		$users = $this->user->all();
-
         return View::make('users.index', compact('users'));
 	}
 
@@ -42,8 +41,7 @@ class UsersController extends BaseController {
 		$input = Input::all();
 		$valid = Validator::make($input, User::$rules);
 
-		if($valid->passes())
-		{
+		if($valid->passes()) {
 			$password = $input['password'];
 			$password = Hash::make($password);
 
@@ -54,12 +52,10 @@ class UsersController extends BaseController {
 			$user->access_level = 0;
 
 			$user->save();
-
-			return Redirect::to('login');
 		} 
 
 		return Redirect::route('users.create')
-			->withInput()
+			->withInput(Input::except('password','password_confirmation'))
 			->withErrors($valid);
 	}
 
@@ -73,8 +69,7 @@ class UsersController extends BaseController {
 	{
 		$user = $this->user->find($id);
 
-		if (is_null($user))
-		{
+		if (is_null($user)) {
 			return Redirect::route('users.index');
 		}
 
@@ -91,8 +86,7 @@ class UsersController extends BaseController {
 	{
 		$user = $this->user->find($id);
 
-		if (is_null($user))
-		{
+		if (is_null($user)) {
 			return Redirect::route('users.index');
 		}
 
@@ -109,8 +103,7 @@ class UsersController extends BaseController {
 	{
 		$user = $this->user->find($id);
 
-		if (is_null($user))
-		{
+		if (is_null($user)) {
 			return Redirect::route('users.index');
 		}
 
@@ -124,7 +117,7 @@ class UsersController extends BaseController {
 
 		$valid = Validator::make($input, $rules);
 
-		if ($valid->passes()){			
+		if ($valid->passes()) {			
 			$user->update($input);
 			return Redirect::route('users.index');
 		}
@@ -144,8 +137,7 @@ class UsersController extends BaseController {
 	{
 		$user = $this->user->find($id);
 
-		if (is_null($user))
-		{
+		if (is_null($user)) {
 			return Redirect::route('users.index');
 		}
 
