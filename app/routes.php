@@ -11,16 +11,20 @@
 |
 */
 
-Route::get('/', 'HomeController@getIndex');
+// Default View
+Route::get('/', 'PostsController@index');
 
-Route::get('login', 'HomeController@getLogin');
-Route::post('login', 'HomeController@postLogin');
+// Login/Logout
+Route::get('login', 'SessionsController@create');
+Route::get('logout', 'SessionsController@destroy');
+Route::resource('sessions', 'SessionsController', array('only'=>array('create', 'store', 'destroy')));
 
-Route::get('logout', 'HomeController@logout');
-
+// RESTful Resources
 Route::resource('posts', 'PostsController');
 Route::resource('comments', 'CommentsController');
 Route::resource('users', 'UsersController');
 Route::resource('tags', 'TagsController');	
+
+
 
 

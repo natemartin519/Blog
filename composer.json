@@ -5,8 +5,7 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.0.*",
-        "way/generators": "dev-master",
-        "symfony/process": "2.3.x-dev#e35e3cea61c851ece0967d8d26b926633e65535a"
+        "way/generators": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

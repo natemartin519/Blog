@@ -10,7 +10,7 @@
 		<div class="navbar navbar-default">
 			<ul>
 				@if(Auth::check())
-					@if(Auth::user()->admin())						
+					@if(Auth::user()->isAdmin())						
 						<li>{{ HTML::link('posts', 'Edit Posts') }}</li>
 						<li>{{ HTML::link('comments', 'Edit Comments') }}</li>
 						<li>{{ HTML::link('tags', 'Edit Tags') }}</li>
@@ -25,7 +25,7 @@
 					<li>
 						{{ Auth::user()->username }}
 
-						@if(Auth::user()->admin()) 
+						@if(Auth::user()->isAdmin()) 
 							(Admin)
 						@endif
 					</li>

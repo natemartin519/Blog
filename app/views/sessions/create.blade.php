@@ -5,7 +5,7 @@
 	<div class="span4 offset1">
 		<div class="well">
 			<legend>Please Login</legend>
-			{{ Form::open(array('url' => 'login'))}}
+			{{ Form::open(array('route' => 'sessions.store'))}}
 				@if($errors->any())
 					<div class="alert alert-error">
 						<a href="#" class='close' data-dismiss='alert'>&times;</a>
