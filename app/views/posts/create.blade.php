@@ -1,30 +1,27 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 
-@section('content')
+@section('header')
+	Create Post
+@stop
 
-	<h1>Create Post</h1>
+
+@section('child_content')
 	{{ Form::open(array('route' => 'posts.store')) }}
-		<ul>
-			<li>
-				{{ Form::label('user_id', 'Author:') }}
-				{{ Form::text('user_id') }}		
-			</li>
-			<li>
-				{{ Form::label('header', 'Title:') }}
-				{{ Form::text('header') }}
-			</li>
-			<li>
-				{{ Form::label('body', "Body:") }}
-				{{ Form::textarea('body') }}
-			</li>
-			<li>
-				{{ Form::label('status', "Status:") }}
-				{{ Form::text('status') }}
-			</li>
-			<li>
-				{{ Form::submit('Submit', array('class' => 'btn btn-success'))}}
-			</li>
-		</ul>
+		{{ Form::label('user_id', 'User ID:') }}
+		{{ Form::text('user_id', '', array('placeholder' => 'ID')) }}<br>	
+
+		{{ Form::label('header', 'Title:') }}
+		{{ Form::text('header', '', array('placeholder' => 'Title')) }}<br>
+
+		{{ Form::label('body', "Body:") }}
+		{{ Form::textarea('body', '', array('placeholder' => 'Type blog post here.')) }}<br>
+
+		{{ Form::label('status', "Status:") }}
+		{{-- Make a database table to grab values from --}}
+		{{ Form::select('status', array('0' => 'Draft', '1'=> 'Active', '3' => 'Hidden'), '0') }}<br>
+
+		{{ Form::submit('Post', array('class' => 'btn btn-success')) }}
+		{{ HTML::linkRoute('posts.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
 	{{ Form::close() }}
 
 @stop

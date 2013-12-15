@@ -1,9 +1,12 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 
-@section('content')
+@section('header')
+	Comment
+@stop
 
-	<h1>Show Comment</h1>
-	<p>{{ link_to_route('comments.index', 'return to all comments') }}</p>
+
+@section('child_content')
+	<p>{{ HTML::linkRoute('comments.index', 'return to all comments', null, array('class' => 'btn btn-primary')) }}</p>
 
 	<table class="table table-striped table-bordered table-hover">
 		<thead>
@@ -21,5 +24,5 @@
 			</tr>
 		</tbody>
 	</table>
-
+	
 @stop

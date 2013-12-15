@@ -3,7 +3,7 @@
 @section('content')
 
 	<h1>Show Post</h1>
-	<p>{{ link_to_route('posts.index', 'return to all posts') }}</p>
+	<p>{{ HTML::linkRoute('posts.index', 'Back', null, array('class' => 'btn btn-primary')) }}</p>
 
 	<table class="table table-striped table-bordered table-hover">
 		<thead>

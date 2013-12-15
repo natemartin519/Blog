@@ -16,11 +16,11 @@
 		{{ Form::label('password', 'Password:') }}
 		{{ Form::password('password', '', array('placeholder' => 'Password')) }} <br>
 
-		{{ Form::label('confromation', 'Confirm:')}}
+		{{ Form::label('confromation', 'Confirm:') }}
 		{{ Form::password('password_confirmation', '', array('placeholder' => 'Password')) }} <br>
 
 		{{ Form::submit('Register', array('class' => 'btn btn-success')) }}
 		{{ HTML::linkRoute('users.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
-	{{ Form::close()}}
+	{{ Form::close() }}
 
 @stop

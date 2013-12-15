@@ -1,31 +1,27 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 
-@section('content')
+@section('header')
+	Edit {{ $post->title }}
+@stop
 
-	<h1>Edit Post</h1>
+
+@section('child_content')
 	{{ Form::model($post, array('method' => 'PATCH', 'route' => array('posts.update', $post->id))) }}
-		<ul>
-			<li>
-				{{ Form::label('user_id', 'Author:') }}
-				{{ Form::text('user_id') }}		
-			</li>
-			<li>
-				{{ Form::label('header', 'Title:') }}
-				{{ Form::text('header') }}
-			</li>
-			<li>
-				{{ Form::label('body', "Body:") }}
-				{{ Form::textarea('body') }}
-			</li>
-			<li>
-				{{ Form::label('status', "Status:") }}
-				{{ Form::text('status') }}
-			</li>
-			<li>
-				{{ Form::submit('Update', array('class' => 'btn btn-success')) }}
-				{{ link_to_route('posts.index', 'Cancel', null, array('class' => 'btn btn-warning')) }}
-			</li>
-		</ul>
+		{{ Form::label('user_id', 'User ID:') }}
+		{{ Form::text('user_id') }}<br>
+
+		{{ Form::label('header', 'Title:') }}
+		{{ Form::text('header') }}<br>
+
+		{{ Form::label('body', "Body:") }}
+		{{ Form::textarea('body') }}<br>
+
+		{{ Form::label('status', "Status:") }}
+		{{-- Make a database table to grab values from --}}
+		{{ Form::select('status', array('0' => 'Draft', '1'=> 'Active', '3' => 'Hidden'), $post->status) }}<br>
+
+		{{ Form::submit('Update', array('class' => 'btn btn-success')) }}
+		{{ HTML::linkRoute('posts.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
 	{{ Form::close() }}
 
 @stop

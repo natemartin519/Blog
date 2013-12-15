@@ -5,7 +5,7 @@
 	<h1>All Posts</h1>
 
 	@if (Auth::user())
-		<p>{{ link_to_route('posts.create', 'Add new post') }}</p>
+		<p>{{ HTML::linkRoute('posts.create', 'Add new post', null, array('class' => 'btn btn-primary')) }}</p>
 	@endif
 
 	@if ($posts->count())
@@ -29,15 +29,15 @@
 					<td>{{ $post->status }}</td>
 
 					@if (Auth::user())
-						<td>{{ link_to_route('posts.show', 'Show', array($post->id), array('class' => 'btn btn-primary')) }}</td>
-						<td>{{ link_to_route('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-info')) }}</td>
+						<td>{{ HTML::linkRoute('posts.show', 'Show', array($post->id), array('class' => 'btn btn-info')) }}</td>
+						<td>{{ HTML::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary')) }}</td>
 						<td>
 							{{ Form::open(array('method' => 'DELETE', 'route' => array('posts.destroy', $post->id))) }}
 								{{ Form::submit('Delete', array('class'=> 'btn btn-danger')) }}
 							{{ Form::close() }}
 						</td>
 					@else
-						<td>{{ link_to_route('posts.show', 'Show', array($post->id), array('class' => 'btn btn-primary')) }}</td>	
+						<td>{{ HTML::linkRoute('posts.show', 'Show', array($post->id), array('class' => 'btn btn-info')) }}</td>	
 					@endif	
 			
 				</tr>
