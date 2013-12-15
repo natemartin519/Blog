@@ -1,19 +1,17 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 
-@section('content')
+@section('header')
+	Edit {{ $tag->name }}
+@stop
 
-	<h1>Edit Tag</h1>
+
+@section('child_content')
 	{{ Form::model($tag, array('method' => 'PATCH', 'route' => array('tags.update', $tag->id))) }}
-		<ul>
-			<li>
-				{{ Form::label('name', 'Tag:') }}
-				{{ Form::text('name') }}		
-			</li>
-			<li>
-				{{ Form::submit('Update', array('class' => 'btn btn-success')) }}
-				{{ link_to_route('tags.index', 'Cancel', null, array('class' => 'btn btn-warning')) }}
-			</li>
-		</ul>
+		{{ Form::label('name', 'Tag:') }}
+		{{ Form::text('name') }}<br>
+
+		{{ Form::submit('Save', array('class' => 'btn btn-success')) }}
+		{{ HTML::linkRoute('tags.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
 	{{ Form::close() }}
 
 @stop

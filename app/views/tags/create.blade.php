@@ -1,18 +1,17 @@
-@extends ('layouts.master')
+@extends('layouts.admin')
 
-@section('content')
+@section('header')
+	Create Tag
+@stop
 
-	<h1>Create Tag</h1>
+
+@section('child_content')
 	{{ Form::open(array('route' => 'tags.store')) }}
-		<ul>
-			<li>
-				{{ Form::label('name', 'Tag:') }}
-				{{ Form::text('name') }}		
-			</li>
-			<li>
-				{{ Form::submit('Submit', array('class' => 'btn btn-success'))}}
-			</li>
-		</ul>
+		{{ Form::label('name', 'Tag:') }}
+		{{ Form::text('name', '', array('placeholder' => 'Tag')) }}<br>	
+		
+		{{ Form::submit('Submit', array('class' => 'btn btn-success'))}}
+		{{ HTML::linkRoute('tags.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
 	{{ Form::close() }}
 
 @stop

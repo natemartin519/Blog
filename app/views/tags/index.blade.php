@@ -1,9 +1,12 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 
-@section('content')
+@section('header')
+	All Tags
+@stop
 
-	<h1>All Tags</h1>
-	<p>{{ link_to_route('tags.create', 'Add new tag') }}</p>
+
+@section('child_content')
+	<p>{{ HTML::linkRoute('tags.create', 'Add new tag', null, array('class' => 'btn btn-primary')) }}</p>
 
 	@if ($tags->count())
 		<table class="table table-striped table-bordered table-hover">
@@ -18,8 +21,8 @@
 				@foreach($tags as $tag)
 				<tr>
 					<td>{{ $tag->name }}</td>
-					<td>{{ link_to_route('tags.show', 'Show', array($tag->id), array('class' => 'btn btn-primary')) }}</td>
-					<td>{{ link_to_route('tags.edit', 'Edit', array($tag->id), array('class' => 'btn btn-info')) }}</td>
+					<td>{{ HTML::linkRoute('tags.show', 'Show', array($tag->id), array('class' => 'btn btn-info')) }}</td>
+					<td>{{ HTML::linkRoute('tags.edit', 'Edit', array($tag->id), array('class' => 'btn btn-primary')) }}</td>
 					<td>
 						{{ Form::open(array('method' => 'DELETE', 'route' => array('tags.destroy', $tag->id))) }}
 							{{ Form::submit('Delete', array('class'=> 'btn btn-danger')) }}
