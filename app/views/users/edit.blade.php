@@ -1,35 +1,26 @@
-@extends('layout.master')
+@extends('layouts.admin')
 
-@section('content')
-<div class="row">
-	<div class="span4 offset1">
-		<div class="well">
-			<legend>Edit User</legend>
-			{{ Form::model($user, array('method' => 'PATCH', 'route' => array('users.update', $user->id))) }}
-				@if($errors->any())
-					<div class="alert alert-error">
-						<a href="#" class='close' data-dismiss='alert'>&times;</a>
-						{{ implode('', $errors->all('<li class="error">:message</li>')) }}
-					</div>
-				@endif
-				{{ Form::label('username', 'User Name:') }}
-				{{ Form::text('username') }} 
+@section('header')
+	Edit {{ $user->username }}
+@stop
 
-				{{ Form::label('email', 'Email:') }}
-				{{ Form::text('email') }}
 
-				{{ Form::label('access_level', 'Access Level:') }}
-				{{ Form::text('access_level') }} 
+@section('child_content')
+	{{ Form::model($user, array('method' => 'PATCH', 'route' => array('users.update', $user->id))) }}
+		{{ Form::label('username', 'User Name:') }}
+		{{ Form::text('username') }}<br>
 
-				<br>
+		{{ Form::label('email', 'Email Address:') }}
+		{{ Form::text('email') }}<br>
 
-				{{ Form::submit('Save', array('class' => 'btn btn-success')) }}
-				{{ HTML::linkRoute('users.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
-			{{ Form::close()}}
-		</div>
-	</div>
-</div>
+		{{ Form::label('access_level', 'Access Level:') }}
 
+		{{-- Make an database table to grab values from --}}
+		{{ Form::select('access_level', array('0' => 'User', '1' => 'Admin'), $user->access_level) }}<br>
+
+		{{ Form::submit('Save', array('class' => 'btn btn-success')) }}
+		{{ HTML::linkRoute('users.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
+	{{ Form::close()}}
 @stop
 
 		

@@ -49,8 +49,8 @@ class TagsController extends BaseController
 
 		return Redirect::route('tags.create')
 			->withInput()
-			->withErrors($valid)
-			->with('message', 'Error: Unable to validate record');
+			->withErrors($valid);
+			//->with('message', 'Error: Unable to validate record');
 	}
 
 	/**
@@ -102,8 +102,8 @@ class TagsController extends BaseController
 
 		return Redirect::route('tags.edit', $id)
 			->withInput()
-			->withErrors($valid)
-			->with('message', 'Error: Unable to validate record');
+			->withErrors($valid);
+			//->with('message', 'Error: Unable to validate record');
 	}
 
 	/**

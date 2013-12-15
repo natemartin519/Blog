@@ -49,8 +49,8 @@ class PostsController extends BaseController
 
 		return Redirect::route('posts.create')
 			->withInput()
-			->withErrors($valid)
-			->with('message', 'Error: Unable to validate record');
+			->withErrors($valid);
+			//->with('message', 'Error: Unable to validate record');
 	}
 
 	/**
@@ -102,8 +102,8 @@ class PostsController extends BaseController
 
 		return Redirect::route('posts.edit', $id)
 			->withInput()
-			->withErrors($valid)
-			->with('message', 'Error: Unable to validate record');
+			->withErrors($valid);
+			//->with('message', 'Error: Unable to validate record');
 	}
 
 	/**

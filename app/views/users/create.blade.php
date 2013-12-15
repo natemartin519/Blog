@@ -1,26 +1,26 @@
-@extends('layout.master')
+@extends('layouts.admin')
 
-@section('content')
-<div class="row">
-	<div class="span4 offset1">
-		<div class="well">
-			<legend>Register</legend>
-			{{ Form::open(array('route' => 'users.store')) }}
-				@if($errors->any())
-					<div class="alert alert-error">
-						<a href="#" class='close' data-dismiss='alert'>&times;</a>
-						{{ implode('', $errors->all('<li class="error">:message</li>')) }}
-					</div>
-				@endif
-				{{ Form::text('username', '', array('placeholder' => 'Username')) }} <br>
-				{{ Form::text('email', '', array('placeholder' => 'Email')) }} <br>
-				{{ Form::password('password', '', array('placeholder' => 'Password')) }} <br>
-				{{ Form::password('password_confirmation', '', array('placeholder' => 'Password')) }} <br>
-				{{ Form::submit('Register', array('class' => 'btn btn-success')) }}
-				{{ HTML::link('/', 'Cancel', array('class' => 'btn btn-danger')) }}
-			{{ Form::close()}}
-		</div>
-	</div>
-</div>
+@section('header')
+	Create User
+@stop
+
+
+@section('child_content')
+	{{ Form::open(array('route' => 'users.store')) }}
+		{{ Form::label('username', 'User Name:') }}
+		{{ Form::text('username', '', array('placeholder' => 'Username')) }} <br>
+		
+		{{ Form::label('email', 'Email Address:') }}
+		{{ Form::text('email', '', array('placeholder' => 'Email')) }} <br>
+
+		{{ Form::label('password', 'Password:') }}
+		{{ Form::password('password', '', array('placeholder' => 'Password')) }} <br>
+
+		{{ Form::label('confromation', 'Confirm:')}}
+		{{ Form::password('password_confirmation', '', array('placeholder' => 'Password')) }} <br>
+
+		{{ Form::submit('Register', array('class' => 'btn btn-success')) }}
+		{{ HTML::linkRoute('users.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
+	{{ Form::close()}}
 
 @stop

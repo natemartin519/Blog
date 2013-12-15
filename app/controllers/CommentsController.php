@@ -47,10 +47,10 @@ class CommentsController extends BaseController
 			return Redirect::route('comments.index');
 		}
 
-		return Request::route('comments.create')
-			->withInputs()
-			->withErrors($valid)
-			->with('message', 'Error:  Unable to validate record');
+		return Redirect::route('comments.create')
+			->withInput()
+			->withErrors($valid);
+			//->with('message', 'Error:  Unable to validate record');
 	}
 
 	/**
@@ -102,8 +102,8 @@ class CommentsController extends BaseController
 
 		return Redirect::route('comments.edit', $id)
 			->withInput()
-			->withErrors($valid)
-			->with('message', 'Error:  Unable to validate record');
+			->withErrors($valid);
+			//->with('message', 'Error:  Unable to validate record');
 	}
 
 	/**

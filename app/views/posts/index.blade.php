@@ -1,53 +1,53 @@
-@extends('layout.master')
+@extends('layouts.master')
 
 @section('content')
 
-<h1>All Posts</h1>
+	<h1>All Posts</h1>
 
-@if (Auth::user())
-	<p>{{ link_to_route('posts.create', 'Add new post') }}</p>
-@endif
+	@if (Auth::user())
+		<p>{{ link_to_route('posts.create', 'Add new post') }}</p>
+	@endif
 
-@if ($posts->count())
-	<table class="table table-striped table-bordered table-hover">
-		<thead>
-			<tr>
-				<th>User ID</th>
-				<th>Title</th>
-				<th>Body</th>
-				<th>Status</th>
-			</tr>
-		</thead>
+	@if ($posts->count())
+		<table class="table table-striped table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>User ID</th>
+					<th>Title</th>
+					<th>Body</th>
+					<th>Status</th>
+				</tr>
+			</thead>
 
-		<tbody>
+			<tbody>
 
-			@foreach($posts as $post)
-			<tr>
-				<td>{{ $post->user_id }}</td>
-				<td>{{ $post->header }}</td>
-				<td>{{ $post->body }}</td>
-				<td>{{ $post->status }}</td>
+				@foreach($posts as $post)
+				<tr>
+					<td>{{ $post->user_id }}</td>
+					<td>{{ $post->header }}</td>
+					<td>{{ $post->body }}</td>
+					<td>{{ $post->status }}</td>
 
-				@if (Auth::user())
-					<td>{{ link_to_route('posts.show', 'Show', array($post->id), array('class' => 'btn btn-primary')) }}</td>
-					<td>{{ link_to_route('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-info')) }}</td>
-					<td>
-						{{ Form::open(array('method' => 'DELETE', 'route' => array('posts.destroy', $post->id))) }}
-							{{ Form::submit('Delete', array('class'=> 'btn btn-danger')) }}
-						{{ Form::close() }}
-					</td>
-				@else
-					<td>{{ link_to_route('posts.show', 'Show', array($post->id), array('class' => 'btn btn-primary')) }}</td>	
-				@endif	
-		
-			</tr>
-			@endforeach
+					@if (Auth::user())
+						<td>{{ link_to_route('posts.show', 'Show', array($post->id), array('class' => 'btn btn-primary')) }}</td>
+						<td>{{ link_to_route('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-info')) }}</td>
+						<td>
+							{{ Form::open(array('method' => 'DELETE', 'route' => array('posts.destroy', $post->id))) }}
+								{{ Form::submit('Delete', array('class'=> 'btn btn-danger')) }}
+							{{ Form::close() }}
+						</td>
+					@else
+						<td>{{ link_to_route('posts.show', 'Show', array($post->id), array('class' => 'btn btn-primary')) }}</td>	
+					@endif	
+			
+				</tr>
+				@endforeach
 
-		</tbody>
-	</table>
+			</tbody>
+		</table>
 
-@else
-	There are no posts
-@endif
+	@else
+		There are no posts
+	@endif
 
 @stop
