@@ -29,7 +29,14 @@ class CommentsController extends BaseController
 	 */
 	public function create()
 	{
-        return View::make('comments.create');
+		if (Input::has('post')) {
+			$postID = Input::get('post');
+
+        	return View::make('comments.create')
+        		->with('post_id', $postID);
+        }
+
+        return Redirect::route('comments.index'); 
 	}
 
 	/**

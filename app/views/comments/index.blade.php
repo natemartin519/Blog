@@ -6,7 +6,6 @@
 
 
 @section('child_content')
-	<p>{{ HTML::linkRoute('comments.create', 'Add new comment', null, array('class' => 'btn btn-primary')) }}</p>
 
 	@if ($comments->count())
 		<table class="table table-striped table-bordered table-hover">

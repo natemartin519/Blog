@@ -48,7 +48,7 @@
 											@endif
 
 											<div class="btn-group">
-												<a href="{{ URL::route('comments.create') }}" class='btn btn-success btn-xs'>
+												<a href="{{ URL::route('comments.create', array('post'=>$post->id)) }}" class='btn btn-success btn-xs'>
 													<span class="glyphicon glyphicon-comment"></span>
 												</a>
 											

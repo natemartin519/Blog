@@ -7,11 +7,8 @@
 
 @section('child_content')
 	{{ Form::open(array('route' => 'comments.store')) }}
-		{{ Form::label('user_id', 'User ID:') }}
-		{{ Form::text('user_id', '', array('placeholder' => 'ID')) }}<br>
-
-		{{ Form::label('post_id', 'Post:') }}
-		{{ Form::text('post_id', '', array('placeholder' => 'ID')) }}<br>		
+		{{ Form::hidden('user_id', Auth::user()->id) }}
+		{{ Form::hidden('post_id', $post_id) }}	
 
 		{{ Form::label('body', "Body:") }}
 		{{ Form::textarea('body', '', array('placeholder' => 'Enter comment here.')) }}<br>
