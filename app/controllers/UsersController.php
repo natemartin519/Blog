@@ -6,7 +6,8 @@ class UsersController extends BaseController
 
 	public function __construct(User $user)
 	{
-		$this->beforeFilter('admin', array('except' => array('create', 'store')));		
+		$this->beforeFilter('auth');
+		$this->beforeFilter('admin', array('except' => array('edit', 'store')));				
 		$this->user = $user;
 	}
 

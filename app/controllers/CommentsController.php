@@ -8,6 +8,7 @@ class CommentsController extends BaseController
 	public function __construct(Comment $comment)
 	{
 		$this->beforeFilter('auth');
+		$this->beforeFilter('admin', array('only' => array('edit', 'update', 'destroy')));
 		$this->comment = $comment;
 	}
 

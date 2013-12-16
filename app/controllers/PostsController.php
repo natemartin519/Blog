@@ -7,7 +7,7 @@ class PostsController extends BaseController
 
 	public function __construct(Post $post) 
 	{
-		$this->beforeFilter('auth', array('only' => array('create', 'store', 'edit', 'update', 'destroy')));		
+		$this->beforeFilter('admin', array('only' => array('create', 'store', 'edit', 'update', 'destroy')));		
 		$this->post = $post;
 	}
 
