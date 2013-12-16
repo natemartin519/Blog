@@ -41,7 +41,7 @@
 							<li>{{ HTML::link('logout', 'Logout') }}</li>
 						@else
 							<li>{{ HTML::link('comments', 'Your Comments') }}</li>
-							<li>{{ HTML::linkRoute('users.edit', 'Your Profile', array(Auth::user()->id)) }}</li>
+							<li>{{ HTML::linkRoute('users.show', 'Your Profile', array(Auth::user()->id)) }}</li>
 							<li>{{ HTML::link('logout', 'Logout') }}</li>		
 						@endif		
 

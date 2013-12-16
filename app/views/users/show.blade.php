@@ -6,7 +6,17 @@
 
 
 @section('child_content')
-	<p>{{ HTML::linkRoute('users.index', 'Return to all users', null, array('class' => 'btn btn-primary')) }}</p>
+
+	@if (Auth::user()->id == $user->id)
+		<p>{{ HTML::linkRoute('users.edit', 'Edit', array(Auth::user()->id), array('class' => 'btn btn-primary')) }}</p>
+		
+	@elseif (Auth::user()->isAdmin())
+		<p>{{ HTML::linkRoute('users.edit', 'Return', null, array('class' => 'btn btn-primary')) }}</p>
+	
+	@else
+		<p>{{ HTML::linkRoute('posts.index', 'Return', null, array('class' => 'btn btn-primary')) }}</p>
+
+	@endif
 
 	<table class="table table-striped table-bordered table-hover">
 		<thead>

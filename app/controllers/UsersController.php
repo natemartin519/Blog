@@ -7,7 +7,7 @@ class UsersController extends BaseController
 	public function __construct(User $user)
 	{
 		$this->beforeFilter('auth');
-		$this->beforeFilter('admin', array('except' => array('edit', 'store')));				
+		$this->beforeFilter('admin', array('except' => array('edit', 'store', 'show')));				
 		$this->user = $user;
 	}
 
@@ -84,14 +84,14 @@ class UsersController extends BaseController
 	 * @return Response
 	 */
 	public function edit($id)
-	{
+	{		
 		$user = $this->user->find($id);
 
-		if (is_null($user)) {
-			return Redirect::route('users.index');
-		}
+		if (!is_null($user) && ((Auth::user()->id == $user->id) || Auth::user()->isAdmin())) {
+			return View::make('users.edit', compact('user'));		
+		} 
 
-        return View::make('users.edit', compact('user'));
+	    return Redirect::route('posts.index');
 	}
 
 	/**

@@ -18,7 +18,13 @@
 		{{ Form::select('access_level', array('0' => 'User', '1' => 'Admin'), $user->access_level) }}<br>
 
 		{{ Form::submit('Save', array('class' => 'btn btn-success')) }}
-		{{ HTML::linkRoute('users.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
+
+		@if (Auth::user()->isAdmin())
+			{{ HTML::linkRoute('users.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
+		@else
+			{{ HTML::linkRoute('users.show', 'Cancel', array(Auth::user()->id), array('class' => 'btn btn-danger')) }}
+		@endif
+
 	{{ Form::close()}}
 	
 @stop
