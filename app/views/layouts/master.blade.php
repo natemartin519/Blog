@@ -4,7 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Welcome to my blog!</title>
-	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.2/cyborg/bootstrap.min.css">
+	<!--link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"-->
 	{{ HTML::style ('scripts/default.css') }}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -63,30 +64,30 @@
 	<div class="container">
 		<div class="body">
 
-		@if($errors->any())
-			<div class="row">		
-				<div class="alert alert-danger alert-dismissable">
-					<a href="#" class='close' data-dismiss='alert' aria-hidden="true">
-						<span class="glyphicon glyphicon-remove"></span>
-					</a>
-					<ul>{{ implode('', $errors->all('<li class="danger">:message</li>')) }}</ul>
-				</div>
-			</div>	
-		@endif
+			@if($errors->any())
+				<div class="row">		
+					<div class="alert alert-danger alert-dismissable">
+						<a href="#" class='close' data-dismiss='alert' aria-hidden="true">
+							<span class="glyphicon glyphicon-remove"></span>
+						</a>
+						<ul>{{ implode('', $errors->all('<li class="danger">:message</li>')) }}</ul>
+					</div>
+				</div>	
+			@endif
 
-		{{-- Don't know if this is still needed --}}
-		@if (Session::has('message'))
-			<div class="row">
-				<div class="alert alert-info alert-dismissable">
-					<a href="#" class="close" data-dismiss="alert" aria-hidden="true">
-						<span class="glyphicon glyphicon-remove"></span>
-					</a>
-					<p>{{ Session::get('message') }}</p>
+			{{-- Don't know if this is still needed --}}
+			@if (Session::has('message'))
+				<div class="row">
+					<div class="alert alert-info alert-dismissable">
+						<a href="#" class="close" data-dismiss="alert" aria-hidden="true">
+							<span class="glyphicon glyphicon-remove"></span>
+						</a>
+						<p>{{ Session::get('message') }}</p>
+					</div>
 				</div>
-			</div>
-		@endif
+			@endif
 
-		@yield('content')
+			@yield('content')
 
 		</div>
 	</div>
