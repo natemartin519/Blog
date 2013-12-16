@@ -4,8 +4,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Welcome to my blog!</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.2/cyborg/bootstrap.min.css">
-	<!--link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"-->
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.2/cyborg/bootstrap.min.css">
+	{{--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.2/spacelab/bootstrap.min.css">--}}
+	{{--<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">--}}
 	{{ HTML::style ('scripts/default.css') }}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -17,7 +18,7 @@
 
 </head>
 <body>
-	<header class="navbar navbar-default navbar-fixed-top navbar-inverse"  role="navigation">
+	<header class="navbar navbar-default navbar-fixed-top"  role="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
@@ -33,14 +34,14 @@
 				<ul class="nav navbar-nav navbar-right">
 					@if(Auth::check())
 						@if(Auth::user()->isAdmin())						
-							<li>{{ HTML::link('posts', 'Edit Posts') }}</li>
-							<li>{{ HTML::link('comments', 'Edit Comments') }}</li>
-							<li>{{ HTML::link('tags', 'Edit Tags') }}</li>
-							<li>{{ HTML::link('users', 'Edit Users') }}</li>											
+							<li>{{ HTML::link('posts', 'Posts') }}</li>
+							<li>{{ HTML::link('comments', 'Comments') }}</li>
+							<li>{{ HTML::link('tags', 'Tags') }}</li>
+							<li>{{ HTML::link('users', 'Users') }}</li>											
 							<li>{{ HTML::link('logout', 'Logout') }}</li>
 						@else
-							<li>{{ HTML::link('comments', 'Edit Your Comments') }}</li>
-							<li>{{ HTML::link('users', 'Edit Your Profile') }}</li>
+							<li>{{ HTML::link('comments', 'Your Comments') }}</li>
+							<li>{{ HTML::link('users', 'Your Profile') }}</li>
 							<li>{{ HTML::link('logout', 'Logout') }}</li>		
 						@endif		
 

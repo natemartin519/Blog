@@ -102,7 +102,7 @@
 		</div>
 
 		<div class="col-md-3">
-			<div class="panel panel-success">
+			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<p class="panel-title">
 						@if(Auth::check())
