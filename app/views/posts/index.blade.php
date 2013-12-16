@@ -10,7 +10,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-9">
 
 			@if ($posts->count())
 				@foreach($posts as $post)
@@ -28,33 +28,36 @@
 									</div>
 
 									<div class="col-md-4">
-										@if (Auth::check() && Auth::user()->isAdmin())
-											
-											{{ Form::open(array('method' => 'DELETE', 'route' => array('posts.destroy', $post->id))) }}							
-												
+										@if (Auth::check())
+											{{ Form::open(array('method' => 'DELETE', 'route' => array('posts.destroy', $post->id))) }}
 												<div class="btn-toolbar pull-right" role="toolbar">								
-													<div class="btn-group">
-														<a href="#" class="btn btn-default btn-xs" disabled="disabled">
-															Status:
-															{{ $post->status }}	
-														</a>
-
-														<a href="{{ URL::route('posts.edit', array($post->id)) }}" class="btn btn-danger btn-xs">
-															<span class="glyphicon glyphicon-pencil"></span>
-														</a>
 													
-														<button class="btn btn-danger btn-xs" type="submit">
-															<span class="glyphicon glyphicon-trash"></span>
-														</button >
+													@if (Auth::user()->isAdmin())
+														<div class="btn-group">
+															<a href="#" class="btn btn-default btn-xs" disabled="disabled">
+																Status:
+																{{ $post->status }}	
+															</a>
 
-														<a href="{{ URL::route('posts.create') }}" class='btn btn-success btn-xs'>
-															<span class="glyphicon glyphicon-plus"></span>
+															<a href="{{ URL::route('posts.edit', array($post->id)) }}" class="btn btn-danger btn-xs">
+																<span class="glyphicon glyphicon-pencil"></span>
+															</a>
+																		
+															<button class="btn btn-danger btn-xs" type="submit">
+																<span class="glyphicon glyphicon-trash"></span>
+															</button >
+														</div>
+													@else
+
+													@endif
+
+													<div class="btn-group">
+														<a href="{{ URL::route('comments.create') }}" class='btn btn-success btn-xs'>
+															<span class="glyphicon glyphicon-comment"></span>
 														</a>
 													</div>
 												</div>
-
 											{{ Form::close() }}
-
 										@endif
 									</div>
 								</div>																
@@ -98,10 +101,22 @@
 
 		</div>
 
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<div class="panel panel-success">
 				<div class="panel-heading">
-					<h3>Sidebar</h3>
+					<p class="panel-title">
+						@if(Auth::check())
+							{{ Auth::user()->username }}
+
+							@if(Auth::user()->isAdmin()) 
+								(Admin)
+							@endif
+						
+						@else
+							Sidebar
+
+						@endif
+					</p>
 				</div>
 
 				<div class="panel-body">

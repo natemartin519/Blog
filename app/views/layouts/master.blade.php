@@ -44,14 +44,6 @@
 							<li>{{ HTML::link('logout', 'Logout') }}</li>		
 						@endif		
 
-						<li>
-							{{ Auth::user()->username }}
-
-							@if(Auth::user()->isAdmin()) 
-								(Admin)
-							@endif
-						</li>
-
 					@else
 						<li>{{ HTML::link('login', 'Login') }}</li>
 					@endif				
