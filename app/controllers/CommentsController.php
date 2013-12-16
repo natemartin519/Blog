@@ -61,7 +61,12 @@ class CommentsController extends BaseController
 	 */
 	public function show($id)
 	{
-		$comment = $this->comment->findOrFail($id);
+		$comment = $this->comment->find($id);
+
+		if (is_null($comment)) {
+			return Redirect::route('comments.index');
+		}
+
         return View::make('comments.show', compact('comment'));
 	}
 

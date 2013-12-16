@@ -61,7 +61,12 @@ class PostsController extends BaseController
 	 */
 	public function show($id)
 	{
-		$post = $this->post->findOrFail($id);
+		$post = $this->post->find($id);
+
+		if (is_null($post)) {
+			return Redirect::route('posts.index');
+		}
+
         return View::make('posts.show', compact('post'));
 	}
 

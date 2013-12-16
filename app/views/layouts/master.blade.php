@@ -36,8 +36,8 @@
 						@if(Auth::user()->isAdmin())						
 							<li>{{ HTML::link('posts', 'Posts') }}</li>
 							<li>{{ HTML::link('comments', 'Comments') }}</li>
-							<li>{{ HTML::link('tags', 'Tags') }}</li>
-							<li>{{ HTML::link('users', 'Users') }}</li>											
+							<li>{{ HTML::link('users', 'Users') }}</li>
+							<li>{{ HTML::link('tags', 'Tags') }}</li>																		
 							<li>{{ HTML::link('logout', 'Logout') }}</li>
 						@else
 							<li>{{ HTML::link('comments', 'Your Comments') }}</li>

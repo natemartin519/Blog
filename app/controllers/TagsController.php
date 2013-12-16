@@ -61,7 +61,12 @@ class TagsController extends BaseController
 	 */
 	public function show($id)
 	{
-		$tag = $this->tag->findOrfail($id);		
+		$tag = $this->tag->find($id);
+
+		if (is_null($tag)) {
+			return Redirect::route('tags.index');
+		}
+		
         return View::make('tags.show', compact('tag'));
 	}
 
