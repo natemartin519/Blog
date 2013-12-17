@@ -15,6 +15,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 		'username' => 'required|unique:users'
 	);
 
+	public function posts()
+	{
+		return $this->hasMany('Post');
+	}
+
+	public function comments()
+	{
+		return $this->hasMany('Comment');
+	}
+
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *

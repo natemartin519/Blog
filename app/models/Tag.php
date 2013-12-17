@@ -6,4 +6,9 @@ class Tag extends Eloquent
 	public $timestamps = false;
 
 	public static $rules = array('name' => 'required');
+
+	public function posts()
+	{
+		return $this->belongsToMany('Post');
+	}
 }

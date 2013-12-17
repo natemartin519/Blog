@@ -10,4 +10,19 @@ class Post extends Eloquent
 		'body' => 'required',
 		'status' => 'required'
 	);
+
+	public function comments()
+	{
+		return $this->hasMany('Comment');
+	}
+
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
+	public function tags()
+	{
+		return $this->belongsToMany('Tag');
+	}	
 }

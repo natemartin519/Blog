@@ -67,6 +67,8 @@ class PostsController extends BaseController
 			return Redirect::route('posts.index');
 		}
 
+		$comments = Post::find($post->id)->comments;
+
         return View::make('posts.show', compact('post'));
 	}
 

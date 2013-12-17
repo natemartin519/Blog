@@ -9,4 +9,14 @@ class Comment extends Eloquent
 		'user_id' => 'required',
 		'post_id' => 'required'
 	);
+
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
+	public function post()
+	{
+		return $this->belongsTo('Post');
+	}
 }
