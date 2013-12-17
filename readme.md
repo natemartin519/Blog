@@ -9,10 +9,13 @@
 - [x] Add authentication to add, show, or edit.
 - [x] Show posts for guests.
 - [x] Make admin and user access levels.
-- [ ] Allow a user to add a comment to a post.
-- [ ] Add tags to posts.
+- [x] Allow a user to add a comment to a post.
+- [ ] Display user comments on posts.
+- [ ] Add and display tags to posts.
 - [ ] Flush out the backend for admin and users.
-- [ ] Make it look pretty with Bootstrap3.
+- [x] Make it look pretty with Bootstrap3.
+- [ ] Add Bootstrap3 styles to forms.
+- [ ] Tweek Bootstrap3 theme.
 
 
 #### Setup

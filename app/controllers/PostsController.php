@@ -67,9 +67,15 @@ class PostsController extends BaseController
 			return Redirect::route('posts.index');
 		}
 
+		$user = Post::find($post->id)->user;
 		$comments = Post::find($post->id)->comments;
+		$tags = Post::find($post->id)->tags;
 
-        return View::make('posts.show', compact('post'));
+        return View::make('posts.show')
+        	->with('post', $post)
+        	->with('user', $user)
+        	->with('comments', $comments)
+        	->with('tags', $tags);
 	}
 
 	/**

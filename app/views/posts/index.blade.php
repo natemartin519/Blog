@@ -23,7 +23,7 @@
 									<div class="col-md-8">
 										<h3>
 											{{ HTML::linkRoute('posts.show', $post->header, array($post->id)) }}
-											<small> by {{ $post->user_id }}</small>
+											<small> by {{ User::find($post->user_id)->username }}</small>
 										</h3>
 									</div>
 
