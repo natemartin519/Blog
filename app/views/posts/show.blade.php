@@ -64,6 +64,33 @@
 						<p>{{ $post->body }}</p>
 					</div>
 
+					<div class="panel-footer">
+
+						<div class="page-header">
+							<h3>User Comments</h3>
+						</div>
+
+						@foreach ($post->comments as $comment)
+							<div class="row">	
+							<form action="" class="form-horizontal">							
+								<div class="form-group">
+									{{ Form::label('username', 'Username:', array('class' => 'col-sm-2 control-label')) }}
+
+									<div class="col-sm-10">
+										{{ Form::label('username', $comment->user->username, array('class' => 'control-label')) }}
+									</div>									
+								</div>
+							</form>
+
+								<div class="col-sm-offset-1 col-sm-10">
+									{{ $comment->body }}
+								</div>
+							</div>
+							<hr>
+						@endforeach
+
+					</div>
+
 				</div>		
 			</div>
 		</div>
