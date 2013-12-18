@@ -1,18 +1,22 @@
 @extends('layouts.admin')
 
 @section('header')
-	All Tags
+     <div class="container empty-space"></div>
+@stop
+
+@section('title')
+	<h2>Tag List</h2>
 @stop
 
 
-@section('child_content')
-	<p>{{ HTML::linkRoute('tags.create', 'Add new tag', null, array('class' => 'btn btn-primary')) }}</p>
-
+@section('body')
 	@if ($tags->count())
 		<table class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
+					<th>View</th>
 					<th>Tag Name</th>
+					<th>Tools</th>
 				</tr>
 			</thead>
 
@@ -20,14 +24,26 @@
 
 				@foreach($tags as $tag)
 				<tr>
-					<td>{{ $tag->name }}</td>
-					<td>{{ HTML::linkRoute('tags.show', 'Show', array($tag->id), array('class' => 'btn btn-info')) }}</td>
-					<td>{{ HTML::linkRoute('tags.edit', 'Edit', array($tag->id), array('class' => 'btn btn-primary')) }}</td>
 					<td>
-						{{ Form::open(array('method' => 'DELETE', 'route' => array('tags.destroy', $tag->id))) }}
-							{{ Form::submit('Delete', array('class'=> 'btn btn-danger')) }}
+						<a href="{{ URL::route('tags.show', array($tag->id)) }}" class="btn btn-success btn-xs">
+							<span class="glyphicon glyphicon-eye-open"></span>
+						</a>
+					</td>
+
+					<td>{{ $tag->name }}</td>
+
+					<td>
+						{{ Form::open(array('method' => 'DELETE', 'route' => array('tags.destroy', $tag->id))) }}		
+							<a href="{{ URL::route('tags.edit', array($tag->id)) }}" class="btn btn-danger btn-xs">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</a>
+						
+							<button class="btn btn-danger btn-xs" type="submit">
+								<span class="glyphicon glyphicon-trash"></span>
+							</button >
 						{{ Form::close() }}
-					</td>				
+					</td>	
+
 				</tr>
 				@endforeach
 
@@ -37,5 +53,6 @@
 	@else
 		There are no tags
 	@endif
+
 
 @stop
