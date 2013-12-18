@@ -44,13 +44,13 @@
 											@endif
 
 											<div class="btn-group">
-												<a href="{{ URL::route('comments.create', array('post'=>$post->id)) }}" class='btn btn-success btn-xs'>
-													<span class="glyphicon glyphicon-comment"></span>
-												</a>
-											
 												<a href="{{ URL::route('posts.index') }}" class="btn btn-success btn-xs">
 													<span class="glyphicon glyphicon-backward"></span>
 												</a>
+												
+												<a href="{{ URL::route('comments.create', array('post'=>$post->id)) }}" class='btn btn-success btn-xs'>
+													<span class="glyphicon glyphicon-comment"></span>
+												</a>											
 											</div>
 
 										</div>

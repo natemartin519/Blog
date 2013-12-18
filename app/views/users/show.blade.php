@@ -11,30 +11,41 @@
 
 @section('body')
 
-	<div class="btn-toolbar pull-right" role="toolbar">
-		<div class="btn-group">
-			
-			@if (Auth::user()->isAdmin())
-				<a href="{{ URL::route('users.index') }}" class="btn btn-success btn-xs">
-					<span class="glyphicon glyphicon-backward"></span>
-				</a>
-			
-			@else
-				<a href="{{ URL::route('posts.index') }}" class="btn btn-success btn-xs">
-					<span class="glyphicon glyphicon-backward"></span>
-				</a>
+	{{ Form::open(array('method' => 'DELETE', 'route' => array('users.destroy', $user->id))) }}	
 
-			@endif
+		<div class="btn-toolbar pull-right" role="toolbar">
+			<div class="btn-group">
+				
+				@if (Auth::user()->isAdmin())
+					<a href="{{ URL::route('users.index') }}" class="btn btn-success btn-xs">
+						<span class="glyphicon glyphicon-backward"></span>
+					</a>			
+				@else
+					<a href="{{ URL::route('posts.index') }}" class="btn btn-success btn-xs">
+						<span class="glyphicon glyphicon-backward"></span>
+					</a>
+				@endif
 
-			@if (Auth::user()->id == $user->id || Auth::user()->isAdmin())
-				<a href="{{ URL::route('users.edit', array($user->id)) }}" class="btn btn-danger btn-xs">
-					<span class="glyphicon glyphicon-pencil"></span>
-				</a>
+			</div>
 
-			@endif
+			<div class="btn-group">
 
+				@if (Auth::user()->id == $user->id || Auth::user()->isAdmin())
+					<a href="{{ URL::route('users.edit', array($user->id)) }}" class="btn btn-danger btn-xs">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</a>
+				@endif
+
+				@if (Auth::user()->isAdmin())
+					<button class="btn btn-danger btn-xs" type="submit">
+						<span class="glyphicon glyphicon-trash"></span>
+					</button >
+				@endif
+
+			</div>
 		</div>
-	</div>
+
+	{{ Form::close() }}
 	
 	<form action="" class="form-horizontal">
 		<div class="form-group">
