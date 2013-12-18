@@ -1,14 +1,10 @@
 @extends('layouts.master')
 
-@section('content')
-	<div class="row">
-		<div class="col-md-12">
-			<div class="page-header">
-				<h1>Blog!</h1>
-			</div>
-		</div>
-	</div>
+@section('header')
+     <div class="container empty-space"></div>
+@stop
 
+@section('content')
 	<div class="row">
 		<div class="col-md-9">			
 			<div class="row">

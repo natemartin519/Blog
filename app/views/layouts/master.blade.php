@@ -54,6 +54,8 @@
 		</div>
 	</header>
 
+	@yield('header')
+
 	<div class="container">
 		<div class="body">
 

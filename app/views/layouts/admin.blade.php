@@ -4,10 +4,10 @@
 	<div class="row">
 		<div class="well">
 			<div class="page-header">
-				<h2>@yield('header')</h2>
+				@yield('title')
 			</div>
 
-			@yield('child_content')
+			@yield('body')
 
 		</div>
 	</div>

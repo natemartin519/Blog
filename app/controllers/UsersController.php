@@ -6,8 +6,8 @@ class UsersController extends BaseController
 
 	public function __construct(User $user)
 	{
-		$this->beforeFilter('auth');
-		$this->beforeFilter('admin', array('except' => array('edit', 'store', 'show')));				
+		$this->beforeFilter('auth', array('except' => array('create', 'store')));
+		$this->beforeFilter('admin', array('except' => array('show', 'edit', 'store', 'create')));
 		$this->user = $user;
 	}
 
@@ -29,6 +29,10 @@ class UsersController extends BaseController
 	 */
 	public function create()
 	{
+		if (Auth::check() && !Auth::user()->isAdmin()) {
+        	return Redirect::route('posts.index');
+        }
+
         return View::make('users.create');
 	}
 
@@ -53,6 +57,12 @@ class UsersController extends BaseController
 			$user->access_level = 0;
 
 			$user->save();
+
+			if (Auth::check()) {
+				return Redirect::route('users.index');
+			}
+
+			return Redirect::to('login');
 		} 
 
 		return Redirect::route('users.create')

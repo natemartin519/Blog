@@ -15,7 +15,7 @@
 Route::get('/', 'PostsController@index');
 
 // Login/Logout
-Route::get('login', 'SessionsController@create');
+Route::get('login', array('before' => 'guest', 'uses' => 'SessionsController@create'));
 Route::get('logout', 'SessionsController@destroy');
 Route::resource('sessions', 'SessionsController', array('only'=>array('create', 'store', 'destroy')));
 

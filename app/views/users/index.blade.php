@@ -1,19 +1,25 @@
 @extends('layouts.admin')
 
 @section('header')
-	All Users
+     <div class="container empty-space"></div>
+@stop
+
+@section('title')
+	<h2>All Users</h2>
 @stop
 
 
-@section('child_content')
-	<p>{{ HTML::linkRoute('users.create', 'Add new user', null, array('class' => 'btn btn-primary')) }}</p>
+@section('body')
 
 	@if ($users->count())
 		<table class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
+					<th>View</th>
 					<th>User Name</th>
 					<th>Email Address</th>
+					<th>Access Level</th>
+					<th>Tools</th>
 				</tr>
 			</thead>
 
@@ -21,15 +27,34 @@
 
 				@foreach($users as $user)
 				<tr>
+					<td>
+						<a href="{{ URL::route('users.show', array($user->id)) }}" class="btn btn-success btn-xs">
+							<span class="glyphicon glyphicon-eye-open"></span>
+						</a>
+					</td>
+
 					<td>{{ $user->username }}</td>
 					<td>{{ $user->email }}</td>
-					<td>{{ HTML::linkRoute('users.show', 'Show', array($user->id), array('class' => 'btn btn-info')) }}</td>
-					<td>{{ HTML::linkRoute('users.edit', 'Edit', array($user->id), array('class' => 'btn btn-primary')) }}</td>
+
+					{{-- Make a database table to grab values from --}}
+					@if ($user->access_level == 0) 
+						<td>User</td>
+					@else 
+						<td>Admin</td>					
+					@endif
+
 					<td>
-						{{ Form::open(array('method' => 'DELETE', 'route' => array('users.destroy', $user->id))) }}
-							{{ Form::submit('Delete', array('class'=> 'btn btn-danger')) }}
+						{{ Form::open(array('method' => 'DELETE', 'route' => array('users.destroy', $user->id))) }}		
+							<a href="{{ URL::route('users.edit', array($user->id)) }}" class="btn btn-danger btn-xs">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</a>
+						
+							<button class="btn btn-danger btn-xs" type="submit">
+								<span class="glyphicon glyphicon-trash"></span>
+							</button >
 						{{ Form::close() }}
-					</td>				
+					</td>	
+
 				</tr>
 				@endforeach
 

@@ -1,26 +1,56 @@
 @extends('layouts.admin')
 
 @section('header')
-	Create User
+     <div class="container empty-space"></div>
+@stop
+
+@section('title')
+	<h2>Register User</h2>
 @stop
 
 
-@section('child_content')
-	{{ Form::open(array('route' => 'users.store')) }}
-		{{ Form::label('username', 'User Name:') }}
-		{{ Form::text('username', '', array('placeholder' => 'Username')) }} <br>
+@section('body')
+	{{ Form::open(array('class' => 'form-horizontal', 'route' => 'users.store')) }}
 		
-		{{ Form::label('email', 'Email Address:') }}
-		{{ Form::text('email', '', array('placeholder' => 'Email')) }} <br>
+		<div class="form-group">
+			{{ Form::label('username', 'User Name:', array('class' => 'col-sm-2 control-label')) }}
+			
+			<div class="col-sm-8">	
+				{{ Form::text('username', null, array('placeholder' => 'Username', 'class' => 'form-control')) }}				
+			</div>
+		</div>
 
-		{{ Form::label('password', 'Password:') }}
-		{{ Form::password('password', '', array('placeholder' => 'Password')) }} <br>
+		<div class="form-group">
+			{{ Form::label('email', 'Email Address:', array('class' => 'col-sm-2 control-label')) }}
+			
+			<div class="col-sm-8">	
+				{{ Form::text('email', null, array('placeholder' => 'Email', 'class' => 'form-control')) }}				
+			</div>
+		</div>
 
-		{{ Form::label('confromation', 'Confirm:') }}
-		{{ Form::password('password_confirmation', '', array('placeholder' => 'Password')) }} <br>
+		<div class="form-group">
+			{{ Form::label('password', 'Password:', array('class' => 'col-sm-2 control-label')) }}
+			
+			<div class="col-sm-8">	
+				{{ Form::password('password', array('placeholder' => 'Password', 'class' => 'form-control')) }}				
+			</div>
+		</div>
 
-		{{ Form::submit('Register', array('class' => 'btn btn-success')) }}
-		{{ HTML::linkRoute('users.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
+		<div class="form-group">
+			{{ Form::label('confromation', 'Confirm:', array('class' => 'col-sm-2 control-label')) }}
+			
+			<div class="col-sm-8">	
+				{{ Form::password('password_confirmation', array('placeholder' => 'Password', 'class' => 'form-control')) }}				
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-8">
+				{{ Form::submit('Register', array('class' => 'btn btn-success')) }}
+				{{ HTML::linkRoute('users.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}				
+			</div>
+		</div>
+
 	{{ Form::close() }}
 
 @stop

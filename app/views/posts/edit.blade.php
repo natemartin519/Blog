@@ -1,27 +1,55 @@
 @extends('layouts.admin')
 
 @section('header')
-	Edit {{ $post->title }}
+	<div class="container empty-space"></div>
 @stop
 
+@section('title')
+	<h2>Edit {{ $post->header }}</h2>
+@stop
 
-@section('child_content')
-	{{ Form::model($post, array('method' => 'PATCH', 'route' => array('posts.update', $post->id))) }}
-		{{ Form::label('user_id', 'User ID:') }}
-		{{ Form::text('user_id') }}<br>
+@section('body')
+	{{ Form::model($post, array('class' => 'form-horizontal', 'method' => 'PATCH', 'route' => array('posts.update', $post->id))) }}		
+		
+		{{ Form::hidden('user_id', Auth::user()->id) }}
 
-		{{ Form::label('header', 'Title:') }}
-		{{ Form::text('header') }}<br>
+		<div class="form-group">
+			{{ Form::label('header', 'Title:', array('class' => 'col-sm-2 control-label')) }}
+			
+			<div class="col-sm-8">
+				{{ Form::text('header', $post->header, array('class' => 'form-control')) }}			
+			</div>
+		</div>
 
-		{{ Form::label('body', "Body:") }}
-		{{ Form::textarea('body') }}<br>
+		<div class="form-group">
+			{{ Form::label('status', "Status:", array('class' => 'col-sm-2 control-label')) }}
+			
+			<div class="col-sm-8">				
+				{{-- Make a database table to grab values from --}}
+				{{ Form::select(
+					'status', 
+					array('0' => 'Draft', '1'=> 'Active', '3' => 'Hidden'), 
+					$post->status, 
+					array('class' => 'form-control')) 
+				}}		
+			</div>
+		</div>
 
-		{{ Form::label('status', "Status:") }}
-		{{-- Make a database table to grab values from --}}
-		{{ Form::select('status', array('0' => 'Draft', '1'=> 'Active', '3' => 'Hidden'), $post->status) }}<br>
+		<div class="form-group">
+			{{ Form::label('body', "Body:", array('class' => 'col-sm-2 control-label')) }}
+			
+			<div class="col-sm-8">
+				{{ Form::textarea('body', $post->body, array('class' => 'form-control', 'rows' => '20')) }}				
+			</div>
+		</div>
 
-		{{ Form::submit('Update', array('class' => 'btn btn-success')) }}
-		{{ HTML::linkRoute('posts.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-8">
+				{{ Form::submit('Update', array('class' => 'btn btn-success')) }}
+				{{ HTML::linkRoute('posts.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}			
+			</div>
+		</div>
+
 	{{ Form::close() }}
 
 @stop
