@@ -23,8 +23,9 @@ class CommentsController extends BaseController
 			$comments = $this->comment->all();
 		}
 		else {
-			$comments = User::find(Auth::user()->id)->comments;
-		}       
+			$userID = Auth::user()->id;
+			$comments = $this->comment->where("user_id", $userID )->get();
+		}
 
         return View::make('comments.index')
         	->with('comments', $comments);
@@ -39,6 +40,11 @@ class CommentsController extends BaseController
 	{
 		if (Input::has('post')) {
 			$postID = Input::get('post');
+			$post = Post::find($postID);
+
+			if (is_null($post)) {
+				return Redirect::route('posts.index');
+			}
 
         	return View::make('comments.create')
         		->with('post_id', $postID);
@@ -55,7 +61,8 @@ class CommentsController extends BaseController
 	public function store()
 	{
 		$input = Input::all();
-		$valid = Validator::make($input, Comment::$rules);
+		$rules = Comment::$rules;
+		$valid = Validator::make($input, $rules);
 
 		if ($valid->passes()) {
 			$this->comment->create($input);

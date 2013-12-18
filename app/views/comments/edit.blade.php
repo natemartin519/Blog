@@ -1,23 +1,34 @@
 @extends('layouts.admin')
 
 @section('header')
-	Edit Comment
+     <div class="container empty-space"></div>
+@stop
+
+@section('title')
+	<h2>Edit {{ $comment->user->username }}'s Comment</h2>
 @stop
 
 
-@section('child_content')
-	{{ Form::model($comment, array('method' => 'PATCH', 'route' => array('comments.update', $comment->id))) }}
-		{{ Form::label('user_id', 'Author:') }}
-		{{ Form::text('user_id') }}<br>	
+@section('body')
+	{{ Form::model($comment, array('class' => 'form-horizontal', 'method' => 'PATCH', 'route' => array('comments.update', $comment->id))) }}
+		{{ Form::hidden('user_id', $comment->user_id) }}
+		{{ Form::hidden('post_id', $comment->post_id) }}
 
-		{{ Form::label('post_id', 'Post:') }}
-		{{ Form::text('post_id') }}<br>
+		<div class="form-group">
+			{{ Form::label('body', "Body:", array('class' => 'col-sm-2 control-label')) }}
 
-		{{ Form::label('body', "Body:") }}
-		{{ Form::textarea('body') }}<br>
-
-		{{ Form::submit('Save', array('class' => 'btn btn-success')) }}
-		{{ HTML::linkRoute('comments.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
+			<div class="col-sm-8">
+				{{ Form::textarea('body', $comment->body, array('class' => 'form-control')) }}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-8">
+				{{ Form::submit('Save', array('class' => 'btn btn-success')) }}
+				{{ HTML::linkRoute('comments.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
+			</div>
+		</div>
+	
 	{{ Form::close() }}
 
 @stop

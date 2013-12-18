@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-	<h2 >User {{ $user->username }}</h2>
+	<h2 >{{ $user->username }}</h2>
 @stop
 
 

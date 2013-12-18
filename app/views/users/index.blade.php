@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-	<h2>All Users</h2>
+	<h2>User List</h2>
 @stop
 
 

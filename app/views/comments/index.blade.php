@@ -1,23 +1,32 @@
 @extends('layouts.admin')
 
 @section('header')
-	All Comments
+     <div class="container empty-space"></div>
+@stop
+
+@section('title')
+	<h2>Comment List</h2>
 @stop
 
 
-@section('child_content')
+@section('body')
 
 	@if ($comments->count())
 		<table class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
-					<th>Post ID</th>
-					<th>Body</th>
+					<th>View</th>
+					<th>Blog Title</th>
+					
+					@if (Auth::user()->isAdmin())
+						<th>User</th>
+					@endif
+
+					<th>Comment</th>
 
 					@if (Auth::user()->isAdmin())
-						<th>User ID</th>
+						<th>Tools</th>
 					@endif
-					
 				</tr>
 			</thead>
 
@@ -25,19 +34,32 @@
 
 				@foreach($comments as $comment)
 					<tr>					
-						<td>{{ $comment->post_id }}</td>
-						<td>{{ $comment->body }}</td>
-						
+						<td>
+							<a href="{{ URL::route('comments.show', array($comment->id)) }}" class="btn btn-success btn-xs">
+								<span class="glyphicon glyphicon-eye-open"></span>
+							</a>
+						</td>
+
+						<td>{{ $comment->post->header }}</td>
+
 						@if (Auth::user()->isAdmin())
-							<td>{{ $comment->user_id }}</td>
-							
-							<td>{{ HTML::linkRoute('comments.show', 'Show', array($comment->id), array('class' => 'btn btn-info')) }}</td>
-							<td>{{ HTML::linkRoute('comments.edit', 'Edit', array($comment->id), array('class' => 'btn btn-primary')) }}</td>
+							<td>{{ $comment->user->username }}</td>
+						@endif							
+
+						<td>{{ $comment->body }}</td>
+
+						@if (Auth::user()->isAdmin())
 							<td>
-								{{ Form::open(array('method' => 'DELETE', 'route' => array('comments.destroy', $comment->id))) }}
-									{{ Form::submit('Delete', array('class'=> 'btn btn-danger')) }}
-								{{ Form::close() }}
-							</td>	
+								{{ Form::open(array('method' => 'DELETE', 'route' => array('comments.destroy', $comment->id))) }}		
+									<a href="{{ URL::route('comments.edit', array($comment->id)) }}" class="btn btn-danger btn-xs">
+										<span class="glyphicon glyphicon-pencil"></span>
+									</a>
+								
+									<button class="btn btn-danger btn-xs" type="submit">
+										<span class="glyphicon glyphicon-trash"></span>
+									</button >
+								{{ Form::close() }}							
+							</td>
 						@endif
 
 					</tr>

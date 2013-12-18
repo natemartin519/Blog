@@ -1,20 +1,34 @@
 @extends('layouts.admin')
 
 @section('header')
-	Add Comment
+     <div class="container empty-space"></div>
+@stop
+
+@section('title')
+	<h2>Comment</h2>
 @stop
 
 
-@section('child_content')
-	{{ Form::open(array('route' => 'comments.store')) }}
+@section('body')
+	{{ Form::open(array('class' => 'form-horizontal', 'route' => 'comments.store')) }}
 		{{ Form::hidden('user_id', Auth::user()->id) }}
 		{{ Form::hidden('post_id', $post_id) }}	
 
-		{{ Form::label('body', "Body:") }}
-		{{ Form::textarea('body', '', array('placeholder' => 'Enter comment here.')) }}<br>
+		<div class="form-group">
+			{{ Form::label('body', "Body:", array('class' => 'col-sm-2 control-label')) }}
 
-		{{ Form::submit('Comment', array('class' => 'btn btn-success'))}}
-		{{ HTML::linkRoute('comments.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
+			<div class="col-sm-8">
+				{{ Form::textarea('body', null, array('placeholder' => 'Enter comment here.', 'class' => 'form-control')) }}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-8">
+				{{ Form::submit('Comment', array('class' => 'btn btn-success'))}}
+				{{ HTML::linkRoute('comments.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}				
+			</div>
+		</div>
+
 	{{ Form::close() }}
 
 @stop
