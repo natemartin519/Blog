@@ -19,7 +19,8 @@ class PostsController extends BaseController
 	public function index()
 	{
 		$posts = $this->post->all();
-        return View::make('posts.index', compact('posts'));
+        return View::make('posts.index')
+        	->with('posts', $posts);
 	}
 
 	/**
@@ -50,7 +51,6 @@ class PostsController extends BaseController
 		return Redirect::route('posts.create')
 			->withInput()
 			->withErrors($valid);
-			//->with('message', 'Error: Unable to validate record');
 	}
 
 	/**
@@ -67,15 +67,8 @@ class PostsController extends BaseController
 			return Redirect::route('posts.index');
 		}
 
-		$user = Post::find($post->id)->user;
-		$comments = Post::find($post->id)->comments;
-		$tags = Post::find($post->id)->tags;
-
         return View::make('posts.show')
-        	->with('post', $post)
-        	->with('user', $user)
-        	->with('comments', $comments)
-        	->with('tags', $tags);
+        	->with('post', $post);
 	}
 
 	/**
@@ -92,8 +85,9 @@ class PostsController extends BaseController
 			return Redirect::route('posts.index');
 		}
 
-        return View::make('posts.edit', compact('post'));
-	}
+        return View::make('posts.edit')
+        	->with('post', $post);
+    }
 
 	/**
 	 * Update the specified resource in storage.
@@ -116,7 +110,6 @@ class PostsController extends BaseController
 		return Redirect::route('posts.edit', $id)
 			->withInput()
 			->withErrors($valid);
-			//->with('message', 'Error: Unable to validate record');
 	}
 
 	/**

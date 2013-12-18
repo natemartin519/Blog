@@ -26,7 +26,8 @@ class CommentsController extends BaseController
 			$comments = User::find(Auth::user()->id)->comments;
 		}       
 
-        return View::make('comments.index', compact('comments'));
+        return View::make('comments.index')
+        	->with('comments', $comments);
 	}
 
 	/**
@@ -64,7 +65,6 @@ class CommentsController extends BaseController
 		return Redirect::route('comments.create')
 			->withInput()
 			->withErrors($valid);
-			//->with('message', 'Error:  Unable to validate record');
 	}
 
 	/**
@@ -81,7 +81,8 @@ class CommentsController extends BaseController
 			return Redirect::route('comments.index');
 		}
 
-        return View::make('comments.show', compact('comment'));
+        return View::make('comments.show')
+        	->with('comment', $comment);
 	}
 
 	/**
@@ -98,7 +99,8 @@ class CommentsController extends BaseController
 			return Redirect::route('comments.index');
 		}
 
-        return View::make('comments.edit', compact('comment'));
+        return View::make('comments.edit')
+        	->with('comment', $comment);
 	}
 
 	/**
@@ -122,7 +124,6 @@ class CommentsController extends BaseController
 		return Redirect::route('comments.edit', $id)
 			->withInput()
 			->withErrors($valid);
-			//->with('message', 'Error:  Unable to validate record');
 	}
 
 	/**

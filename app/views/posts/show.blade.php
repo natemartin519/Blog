@@ -15,7 +15,7 @@
 							<div class="col-md-8">
 								<h3>
 									{{ HTML::linkRoute('posts.show', $post->header, array($post->id)) }}
-									<small> by {{ $user->username }}</small>
+									<small> by {{ $post->user->username }}</small>
 								</h3>
 							</div>
 

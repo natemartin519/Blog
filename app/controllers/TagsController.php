@@ -19,7 +19,8 @@ class TagsController extends BaseController
 	public function index()
 	{
 		$tags = $this->tag->all();
-        return View::make('tags.index', compact('tags'));
+        return View::make('tags.index')
+        	->with('tags', $tags);
 	}
 
 	/**
@@ -67,7 +68,8 @@ class TagsController extends BaseController
 			return Redirect::route('tags.index');
 		}
 		
-        return View::make('tags.show', compact('tag'));
+        return View::make('tags.show')
+        	->with('tag', $tag);
 	}
 
 	/**
@@ -84,7 +86,8 @@ class TagsController extends BaseController
 			return Redirect::route('tags.index');
 		}
 
-        return View::make('tags.edit', compact('tag'));
+        return View::make('tags.edit')
+        	->with('tag', $tag);
 	}
 
 	/**

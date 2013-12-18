@@ -19,7 +19,8 @@ class UsersController extends BaseController
 	public function index()
 	{
 		$users = $this->user->all();
-        return View::make('users.index', compact('users'));
+        return View::make('users.index')
+        	->with('users', $users);
 	}
 
 	/**
@@ -84,7 +85,8 @@ class UsersController extends BaseController
 			return Redirect::route('users.index');
 		}
 
-        return View::make('users.show', compact('user'));
+        return View::make('users.show')
+        	->with('user', $user);
 	}
 
 	/**
@@ -98,7 +100,8 @@ class UsersController extends BaseController
 		$user = $this->user->find($id);
 
 		if (!is_null($user) && ((Auth::user()->id == $user->id) || Auth::user()->isAdmin())) {
-			return View::make('users.edit', compact('user'));		
+			return View::make('users.edit')
+				->with('user', $user);		
 		} 
 
 	    return Redirect::route('posts.index');
@@ -130,6 +133,7 @@ class UsersController extends BaseController
 
 		if ($valid->passes()) {			
 			$user->update($input);
+
 			return Redirect::route('users.index');
 		}
 
