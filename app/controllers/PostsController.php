@@ -30,7 +30,16 @@ class PostsController extends BaseController
 	 */
 	public function create()
 	{
-        return View::make('posts.create');
+		$rawTags = Tag::all();
+		$formattedTags = array();
+
+		// Convert tags from an array of objects to an array key/value pairs
+		foreach ($rawTags as $rawTag) {
+			$formattedTags[$rawTag->id] = $rawTag->name;
+		}
+
+        return View::make('posts.create')
+        	->with('tags', $formattedTags);
 	}
 
 	/**
@@ -40,11 +49,27 @@ class PostsController extends BaseController
 	 */
 	public function store()
 	{
-		$input = Input::all();
+		$input = Input::all();		
 		$valid = Validator::make($input, Post::$rules);
 
-		if ($valid->passes()) {
-			$this->post->create($input);
+		if ($valid->passes()) {			
+			
+			// First save the post
+			$post = new Post();
+			$post->user_id = $input['user_id'];
+			$post->header = $input['header'];
+			$post->body = $input['body'];
+			$post->status = $input['status'];
+			$post->save();
+
+			// Then update the post_tag pivet table
+			
+			if (Input::has('tags')) {
+				$tags = Input::get('tags');
+				$post->tags()->sync($tags);
+				$post->save();
+			}
+
 			return Redirect::route('posts.index');
 		}
 

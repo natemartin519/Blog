@@ -23,7 +23,7 @@ Route::resource('sessions', 'SessionsController', array('only'=>array('create', 
 Route::resource('posts', 'PostsController');
 Route::resource('comments', 'CommentsController');
 Route::resource('users', 'UsersController');
-Route::resource('tags', 'TagsController');	
+Route::resource('tags', 'TagsController');
 
 
 

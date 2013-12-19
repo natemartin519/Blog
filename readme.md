@@ -19,7 +19,7 @@
 #### Version 2 ideas (Working with bundles)
 - [ ] Add markdown support to comment create and post create.
 - [ ] Use OAuth 2 for user logins
-- [ ] Better user Auth levels
+- [ ] Better user Auth levels/Roles
 
 
 #### Setup
