@@ -13,14 +13,12 @@
 - [x] Display user comments on posts.
 - [ ] Display tags on post and filter posts by tag.
 - [ ] Add a password change/reset option to users edit form.
-- [ ] Tweek the backend for admin.
 - [x] Make it look pretty with Bootstrap3.
 - [x] Add Bootstrap3 styles to forms.
-- [ ] Tweek Bootstrap3 theme.
 
 #### Version 2 ideas (Working with bundles)
 - [ ] Add markdown support to comment create and post create.
-- [ ] User OAuth 2 for user logins
+- [ ] Use OAuth 2 for user logins
 - [ ] Better user Auth levels
 
 

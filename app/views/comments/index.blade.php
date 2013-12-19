@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-	<h2>Comment List</h2>
+	<h2>All Comments</h2>
 @stop
 
 

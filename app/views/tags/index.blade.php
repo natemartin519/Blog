@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-	<h2>Tag List</h2>
+	<h2>All Tags</h2>
 @stop
 
 

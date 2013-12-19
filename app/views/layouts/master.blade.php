@@ -33,11 +33,36 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					@if(Auth::check())
-						@if(Auth::user()->isAdmin())						
-							<li>{{ HTML::link('posts', 'Posts') }}</li>
+						@if(Auth::user()->isAdmin())
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Posts <span class="caret"></span></a>
+								
+								<ul class="dropdown-menu">
+									<li>{{ HTML::link('posts', 'View Posts') }}</li>
+									<li>{{ HTML::linkRoute('posts.create', 'New Post') }}</li>
+								</ul>								
+							</li>					
+							
 							<li>{{ HTML::link('comments', 'Comments') }}</li>
-							<li>{{ HTML::link('users', 'Users') }}</li>
-							<li>{{ HTML::link('tags', 'Tags') }}</li>																		
+							
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <span class="caret"></span></a>	
+
+								<ul class="dropdown-menu">
+									<li>{{ HTML::link('users', 'View Users') }}</li>
+									<li>{{ HTML::linkRoute('users.create', 'New User') }}</li>
+								</ul>
+							</li>
+							
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Tools <span class="caret"></span></a>
+
+								<ul class="dropdown-menu">
+									<li>{{ HTML::link('tags', 'Manage Tags') }}</li>
+									<li>{{ HTML::linkRoute('tags.create', 'New Tag') }}</li>							
+								</ul>								
+							</li>
+																									
 							<li>{{ HTML::link('logout', 'Logout') }}</li>
 						@else
 							<li>{{ HTML::link('comments', 'Your Comments') }}</li>
