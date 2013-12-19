@@ -10,10 +10,11 @@
 - [x] Show posts for guests.
 - [x] Make admin and user access levels.
 - [x] Allow a user to add a comment to a post.
-- [ ] Display user comments on posts.
-- [ ] Display tags on post and display posts by tag.
+- [x] Display user comments on posts.
+- [ ] Add markdown support to comment create and post create.
+- [ ] Display tags on post and filter posts by tag.
 - [ ] Add a password change/reset option to users edit form.
-- [ ] Flush out the backend for admin.
+- [ ] Tweek the backend for admin.
 - [x] Make it look pretty with Bootstrap3.
 - [x] Add Bootstrap3 styles to forms.
 - [ ] Tweek Bootstrap3 theme.

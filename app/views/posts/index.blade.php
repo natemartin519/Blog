@@ -53,12 +53,14 @@
 															</button >
 														
 														</div>
-															
-													@else
 
 													@endif
 
 													<div class="btn-group">
+														<a href="{{ URL::route('posts.show', array($post->id)) }}" class="btn btn-success btn-xs">
+															<span class="glyphicon glyphicon-eye-open"></span>
+														</a>
+
 														<a href="{{ URL::route('comments.create', array('post'=>$post->id)) }}" class='btn btn-success btn-xs'>
 															<span class="glyphicon glyphicon-comment"></span>
 														</a>
@@ -66,6 +68,16 @@
 
 												</div>
 											{{ Form::close() }}
+										
+										@else
+											<div class="btn-toolbar pull-right" role="toolbar">	
+												<div class="btn-group">
+													<a href="{{ URL::route('posts.show', array($post->id)) }}" class="btn btn-success btn-xs">
+														<span class="glyphicon glyphicon-eye-open"></span>
+													</a>
+												</div>	
+											</div>									
+										
 										@endif
 									</div>
 									
