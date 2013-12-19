@@ -30,10 +30,10 @@ class PostsController extends BaseController
 	 */
 	public function create()
 	{
+		// Convert tags from an array of objects to an array key/value pairs
 		$rawTags = Tag::all();
 		$formattedTags = array();
 
-		// Convert tags from an array of objects to an array key/value pairs
 		foreach ($rawTags as $rawTag) {
 			$formattedTags[$rawTag->id] = $rawTag->name;
 		}
@@ -49,12 +49,11 @@ class PostsController extends BaseController
 	 */
 	public function store()
 	{
-		$input = Input::all();		
+		$input = array_except(Input::all(), 'tags');		
 		$valid = Validator::make($input, Post::$rules);
 
-		if ($valid->passes()) {			
-			
-			// First save the post
+		if ($valid->passes()) {		
+			// First create the post in the database
 			$post = new Post();
 			$post->user_id = $input['user_id'];
 			$post->header = $input['header'];
@@ -62,8 +61,7 @@ class PostsController extends BaseController
 			$post->status = $input['status'];
 			$post->save();
 
-			// Then update the post_tag pivet table
-			
+			// Then update the post_tag pivet table	now tha		
 			if (Input::has('tags')) {
 				$tags = Input::get('tags');
 				$post->tags()->sync($tags);
@@ -109,9 +107,20 @@ class PostsController extends BaseController
 		if (is_null($post)) {
 			return Redirect::route('posts.index');
 		}
+		
+
+		// Convert tags from an array of objects to an array key/value pairs
+		$rawTags = Tag::all();
+		$formattedTags = array();
+
+		foreach ($rawTags as $rawTag) {
+			$formattedTags[$rawTag->id] = $rawTag->name;
+		}
+
 
         return View::make('posts.edit')
-        	->with('post', $post);
+        	->with('post', $post)
+        	->with('tags', $formattedTags);
     }
 
 	/**
@@ -122,12 +131,18 @@ class PostsController extends BaseController
 	 */
 	public function update($id)
 	{
-		$input = array_except(Input::all(), '_method');
+		$input = array_except(Input::all(), array('_method', 'tags'));
 		$valid = Validator::make($input, Post::$rules);
 
 		if ($valid->passes()) {
 			$post = $this->post->find($id);
 			$post->update($input);
+
+			if (Input::has('tags')) {
+				$tags = Input::get('tags');
+				$post->tags()->sync($tags);
+				$post->save();
+			}
 
 			return Redirect::route('posts.index');
 		}

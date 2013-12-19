@@ -22,6 +22,22 @@
 		</div>
 
 		<div class="form-group">
+			{{ Form::label('tags', 'Tags:', array('class' => 'col-sm-2 control-label')) }}
+			
+			@foreach ($post->tags as $tag)
+				
+			@endforeach
+
+			<div class="col-sm-8">
+				@if (count($tags))				
+					{{ Form::select('tags[]', $tags, null, array('multiple', 'size' => '3', 'class' => 'form-control')) }}
+				@else
+					{{ Form::select('tags[]', array('0' => 'There are no tags'), null, array('multiple', 'disabled', 'size' => '3', 'class' => 'form-control')) }}
+				@endif
+			</div>
+		</div>
+
+		<div class="form-group">
 			{{ Form::label('status', "Status:", array('class' => 'col-sm-2 control-label')) }}
 			
 			<div class="col-sm-8">				
