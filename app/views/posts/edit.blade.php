@@ -24,13 +24,30 @@
 		<div class="form-group">
 			{{ Form::label('tags', 'Tags:', array('class' => 'col-sm-2 control-label')) }}
 			
-			@foreach ($post->tags as $tag)
 				
-			@endforeach
 
 			<div class="col-sm-8">
-				@if (count($tags))				
-					{{ Form::select('tags[]', $tags, null, array('multiple', 'size' => '3', 'class' => 'form-control')) }}
+
+				
+				@if (count($tags))
+					{{-- Populate the selection box the hard way so I can set multiple items as selected --}}
+					<select multiple="multiple" size="3" class="form-control" name="tags[]">
+						
+						@foreach ($tags as $tag)
+							@if ($tag->posts->find($post->id))
+								<option value="{{ $tag->id }}" selected="selected">
+									{{ $tag->name }}
+								</option>
+							@else
+								<option value="{{ $tag->id }}">
+									{{ $tag->name }}
+								</option>
+							@endif
+						@endforeach
+
+					</select>				
+					
+					
 				@else
 					{{ Form::select('tags[]', array('0' => 'There are no tags'), null, array('multiple', 'disabled', 'size' => '3', 'class' => 'form-control')) }}
 				@endif

@@ -107,20 +107,12 @@ class PostsController extends BaseController
 		if (is_null($post)) {
 			return Redirect::route('posts.index');
 		}
-		
 
-		// Convert tags from an array of objects to an array key/value pairs
-		$rawTags = Tag::all();
-		$formattedTags = array();
-
-		foreach ($rawTags as $rawTag) {
-			$formattedTags[$rawTag->id] = $rawTag->name;
-		}
-
+		$tags = Tag::all();
 
         return View::make('posts.edit')
         	->with('post', $post)
-        	->with('tags', $formattedTags);
+        	->with('tags', $tags);
     }
 
 	/**
