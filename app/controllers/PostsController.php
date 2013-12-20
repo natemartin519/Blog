@@ -18,7 +18,15 @@ class PostsController extends BaseController
 	 */
 	public function index()
 	{
-		$posts = $this->post->all();
+
+		if (Input::has('tag')) {
+			$tag = Input::get('tag');
+			$posts = Tag::find($tag)->posts;
+		} 
+		else {
+			$posts = $this->post->all();
+		}
+
         return View::make('posts.index')
         	->with('posts', $posts);
 	}

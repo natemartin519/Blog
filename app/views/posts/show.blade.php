@@ -176,14 +176,16 @@
 							@endif
 						
 						@else
-							Sidebar
+							Tags
 
 						@endif
 					</p>
 				</div>
 
 				<div class="panel-body">
-					<p>Stuff goes here</p>
+					@foreach ($post->tags as $tag)
+						{{ HTML::linkRoute('posts.index', $tag->name, array('tag' => $tag->id), array('class' => 'btn btn-info')) }}
+					@endforeach
 				</div>
 			</div>
 		</div>
