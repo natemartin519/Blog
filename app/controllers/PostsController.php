@@ -18,7 +18,6 @@ class PostsController extends BaseController
 	 */
 	public function index()
 	{
-
 		if (Input::has('tag')) {
 			$tag = Input::get('tag');
 			$posts = Tag::find($tag)->posts;
@@ -26,9 +25,13 @@ class PostsController extends BaseController
 		else {
 			$posts = $this->post->all();
 		}
+		
+
+		$tags = Tag::all();
 
         return View::make('posts.index')
-        	->with('posts', $posts);
+        	->with('posts', $posts)
+        	->with('tags', $tags);
 	}
 
 	/**
@@ -73,7 +76,6 @@ class PostsController extends BaseController
 			if (Input::has('tags')) {
 				$tags = Input::get('tags');
 				$post->tags()->sync($tags);
-				$post->save();
 			}
 
 			return Redirect::route('posts.index');
@@ -141,8 +143,11 @@ class PostsController extends BaseController
 			if (Input::has('tags')) {
 				$tags = Input::get('tags');
 				$post->tags()->sync($tags);
-				$post->save();
-			}
+			} 
+			else {
+				$post->tags()->detach();
+			}				
+				
 
 			return Redirect::route('posts.index');
 		}

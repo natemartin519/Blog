@@ -11,7 +11,8 @@
 - [x] Make admin and user access levels.
 - [x] Allow a user to add a comment to a post.
 - [x] Display user comments on posts.
-- [ ] Display tags on post and filter posts by tag.
+- [x] Display tags on post and filter posts by tag.
+- [ ] Add a post status filters.
 - [ ] Add a password change/reset option to users edit form.
 - [x] Make it look pretty with Bootstrap3.
 - [x] Add Bootstrap3 styles to forms.
