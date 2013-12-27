@@ -4,15 +4,23 @@ class UsersTableSeeder extends Seeder {
 
 	public function run()
 	{
-		// Uncomment the below to wipe the table clean before populating
-		// DB::table('users')->truncate();
+		Tag::truncate();
 
-		$users = array(
+		// The admin
+		Tag::create([
+			'username' 		=> 'natemartin',
+			'email' 		=> 'natemartin@gmail.com',
+			'password' 		=> 'admin',
+			'access_level' 	=> '1'
+		]);
 
-		);
-
-		// Uncomment the below to run the seeder
-		// DB::table('users')->insert($users);
+		// An user
+		Tag::create([
+			'username' 		=> 'bob',
+			'email' 		=> 'bob@bob.com',
+			'password' 		=> 'bob',
+			'access_level' 	=> '0'			
+		]);
 	}
 
 }

@@ -165,29 +165,7 @@
 		</div>
 
 		<div class="col-md-3">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<p class="panel-title">
-						@if(Auth::check())
-							{{ Auth::user()->username }}
-
-							@if(Auth::user()->isAdmin()) 
-								(Admin)
-							@endif
-						
-						@else
-							Tags
-
-						@endif
-					</p>
-				</div>
-
-				<div class="panel-body">
-					@foreach ($post->tags as $tag)
-						{{ HTML::linkRoute('posts.index', $tag->name, array('tag' => $tag->id), array('class' => 'btn btn-info')) }}
-					@endforeach
-				</div>
-			</div>
+			@include('posts.partials.sidebar')
 		</div>
 
 	</div>

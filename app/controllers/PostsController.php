@@ -18,20 +18,18 @@ class PostsController extends BaseController
 	 */
 	public function index()
 	{
+
+		// TODO: Move logic to model
 		if (Input::has('tag')) {
 			$tag = Input::get('tag');
 			$posts = Tag::find($tag)->posts;
 		} 
 		else {
-			$posts = $this->post->all();
+			$posts = $this->post->with('user')->get();
 		}
-		
-
-		$tags = Tag::all();
 
         return View::make('posts.index')
-        	->with('posts', $posts)
-        	->with('tags', $tags);
+        	->with('posts', $posts);
 	}
 
 	/**
@@ -42,6 +40,8 @@ class PostsController extends BaseController
 	public function create()
 	{
 		// Convert tags from an array of objects to an array key/value pairs
+
+		// TODO: Refactor
 		$rawTags = Tag::all();
 		$formattedTags = array();
 
@@ -60,6 +60,7 @@ class PostsController extends BaseController
 	 */
 	public function store()
 	{
+		// TODO: Move logic into Model	
 		$input = array_except(Input::all(), 'tags');		
 		$valid = Validator::make($input, Post::$rules);
 
@@ -72,7 +73,7 @@ class PostsController extends BaseController
 			$post->status = $input['status'];
 			$post->save();
 
-			// Then update the post_tag pivet table	now tha		
+			// Then update the post_tag pivet table
 			if (Input::has('tags')) {
 				$tags = Input::get('tags');
 				$post->tags()->sync($tags);
@@ -100,6 +101,12 @@ class PostsController extends BaseController
 			return Redirect::route('posts.index');
 		}
 
+		// load the post's user (author) information and all the post's comments
+		$post->load('user', 'comments');
+
+		// load the all the post's comment's user information
+		$post->comments->load('user');		
+
         return View::make('posts.show')
         	->with('post', $post);
 	}
@@ -118,6 +125,7 @@ class PostsController extends BaseController
 			return Redirect::route('posts.index');
 		}
 
+		// TODO:: composer
 		$tags = Tag::all();
 
         return View::make('posts.edit')
@@ -133,6 +141,7 @@ class PostsController extends BaseController
 	 */
 	public function update($id)
 	{
+		// TODO: Move logic into Model
 		$input = array_except(Input::all(), array('_method', 'tags'));
 		$valid = Validator::make($input, Post::$rules);
 

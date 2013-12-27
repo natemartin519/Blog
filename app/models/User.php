@@ -15,6 +15,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 		'username' => 'required|unique:users'
 	);
 
+	/**
+	 * The attributes excluded from the model's JSON form.
+	 *
+	 * @var array
+	 */
+	protected $hidden = array('password');
+	
 	public function posts()
 	{
 		return $this->hasMany('Post');
@@ -25,12 +32,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 		return $this->hasMany('Comment');
 	}
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('password');
+	public function setPasswordAttribute($value)
+	{
+		$this->attributes['password'] = Hash::make($value);
+	}
+
+
+
 
 	/**
 	 * Check if the user has admin privileges.

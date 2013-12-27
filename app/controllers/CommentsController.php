@@ -20,11 +20,11 @@ class CommentsController extends BaseController
 	public function index()
 	{
 		if (Auth::user()->isAdmin()) {
-			$comments = $this->comment->all();
+			$comments = $this->comment->with('user', 'post')->get();
 		}
 		else {
 			$userID = Auth::user()->id;
-			$comments = $this->comment->where("user_id", $userID )->get();
+			$comments = $this->comment->where("user_id", $userID )->with('user', 'post')->get();
 		}
 
         return View::make('comments.index')

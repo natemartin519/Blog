@@ -4,15 +4,12 @@ class TagsTableSeeder extends Seeder {
 
 	public function run()
 	{
-		// Uncomment the below to wipe the table clean before populating
-		// DB::table('tags')->truncate();
+		Tag::truncate();
 
-		$tags = array(
-
-		);
-
-		// Uncomment the below to run the seeder
-		// DB::table('tags')->insert($tags);
+		Tag::create(['name' => 'Programming']);
+		Tag::create(['name' => 'PHP']);
+		Tag::create(['name' => 'Laravel']);
+		Tag::create(['name' => 'Running']);
+		Tag::create(['name' => 'Dogs']);
 	}
-
 }

@@ -3,5 +3,6 @@
 composer.phar
 composer.lock
 .DS_Store
+Thumbs.db
 laravelblog.sublime-project
 laravelblog.sublime-workspace

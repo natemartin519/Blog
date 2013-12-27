@@ -12,22 +12,16 @@
 - [x] Allow a user to add a comment to a post.
 - [x] Display user comments on posts.
 - [x] Display tags on post and filter posts by tag.
-- [ ] Add a post status filters.
+- [ ] Add a post status filter.
 - [ ] Add a password change/reset option to users edit form.
 - [x] Make it look pretty with Bootstrap3.
 - [x] Add Bootstrap3 styles to forms.
+- [ ] Code cleanup/Refactoring
 
 #### Version 2 ideas (Working with bundles)
 - [ ] Add markdown support to comment create and post create.
 - [ ] Use OAuth 2 for user logins
 - [ ] Better user Auth levels/Roles
-
-
-#### Setup
-1. Use 'php composer.phar install' to download Laravel.
-2. Update '/app/config/database.php' with your datatbase credentials.
-3. Use 'php artisan migrate:install' to setup a margration table.
-4. Use 'php artisan migrate' to setup the blog tables
 
 
 <br><br><br>

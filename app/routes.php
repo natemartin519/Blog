@@ -24,7 +24,3 @@ Route::resource('posts', 'PostsController');
 Route::resource('comments', 'CommentsController');
 Route::resource('users', 'UsersController');
 Route::resource('tags', 'TagsController');
-
-
-
-
