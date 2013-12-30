@@ -25,8 +25,19 @@
 			{{ Form::label('tags', 'Tags:', array('class' => 'col-sm-2 control-label')) }}
 			
 			<div class="col-sm-8">
-				@if (count($tags))				
-					{{ Form::select('tags[]', $tags, null, array('multiple', 'size' => '3', 'class' => 'form-control')) }}
+				@if (count($tags))	
+
+					{{-- Populate the selection box the hard way --}}
+					<select multiple="multiple" size="3" class="form-control" name="tags[]">
+						
+						@foreach ($tags as $tag)
+							<option value="{{ $tag->id }}">
+								{{ $tag->name }}
+							</option>
+						@endforeach
+
+					</select>
+
 				@else
 					{{ Form::select('tags[]', array('0' => 'There are no tags'), null, array('multiple', 'disabled', 'size' => '3', 'class' => 'form-control')) }}
 				@endif

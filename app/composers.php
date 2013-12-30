@@ -1,3 +1,3 @@
 <?php
 
-View::composer('posts.partials.sidebar', 'SidebarComposer');
+View::composer(array('posts.partials.sidebar', 'posts.create', 'posts.edit'), 'PostTagsComposer');

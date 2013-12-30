@@ -19,10 +19,13 @@ class PostsController extends BaseController
 	public function index()
 	{
 
-		// TODO: Move logic to model
 		if (Input::has('tag')) {
 			$tag = Input::get('tag');
-			$posts = Tag::find($tag)->posts;
+
+			$posts = $this->post->join('post_tag', 'posts.id', '=', 'post_tag.post_id')
+				->where('post_tag.tag_id', '=', $tag)
+				->with('user')
+				->get();
 		} 
 		else {
 			$posts = $this->post->with('user')->get();
@@ -39,18 +42,7 @@ class PostsController extends BaseController
 	 */
 	public function create()
 	{
-		// Convert tags from an array of objects to an array key/value pairs
-
-		// TODO: Refactor
-		$rawTags = Tag::all();
-		$formattedTags = array();
-
-		foreach ($rawTags as $rawTag) {
-			$formattedTags[$rawTag->id] = $rawTag->name;
-		}
-
-        return View::make('posts.create')
-        	->with('tags', $formattedTags);
+        return View::make('posts.create');
 	}
 
 	/**
@@ -105,7 +97,9 @@ class PostsController extends BaseController
 		$post->load('user', 'comments');
 
 		// load the all the post's comment's user information
-		$post->comments->load('user');		
+		if (!is_null($post->comments)) {			
+			$post->comments->load('user');	
+		}	
 
         return View::make('posts.show')
         	->with('post', $post);
@@ -125,12 +119,8 @@ class PostsController extends BaseController
 			return Redirect::route('posts.index');
 		}
 
-		// TODO:: composer
-		$tags = Tag::all();
-
         return View::make('posts.edit')
-        	->with('post', $post)
-        	->with('tags', $tags);
+        	->with('post', $post);
     }
 
 	/**

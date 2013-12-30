@@ -1,6 +1,6 @@
 <?php
 
-class SidebarComposer {
+class PostTagsComposer {
 	
 	protected $tag;
 
