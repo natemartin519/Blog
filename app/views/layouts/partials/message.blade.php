@@ -15,7 +15,9 @@
 			<a href="#" class="close" data-dismiss="alert" aria-hidden="true">
 				<span class="glyphicon glyphicon-remove"></span>
 			</a>
-			<p>{{ Session::get('message') }}</p>
+			<p>{{ Session::get('message') }}</p>			
 		</div>
 	</div>
+
+	{{ Session::forget('message') }}
 @endif

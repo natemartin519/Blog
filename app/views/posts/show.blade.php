@@ -1,9 +1,5 @@
 @extends('layouts.master')
 
-@section('header')
-     <div class="container empty-space"></div>
-@stop
-
 @section('content')
 	<div class="row">
 		<div class="col-md-9">			

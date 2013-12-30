@@ -1,9 +1,5 @@
 @extends('layouts.admin')
 
-@section('header')
-     <div class="container empty-space"></div>
-@stop
-
 @section('title')
 	<h2 >Comment <small>{{ $comment->post->header }}</small></h2>
 @stop

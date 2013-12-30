@@ -1,9 +1,5 @@
 @extends('layouts.admin')
 
-@section('header')
-     <div class="container empty-space"></div>
-@stop
-
 @section('title')
 	<h2>Register User</h2>
 @stop

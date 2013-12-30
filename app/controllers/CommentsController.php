@@ -84,12 +84,13 @@ class CommentsController extends BaseController
 	{
 		$comment = $this->comment->find($id);
 
-		if (is_null($comment)) {
-			return Redirect::route('comments.index');
+		if (isset($comment)) {
+	        return View::make('comments.show')
+    	    	->with('comment', $comment);
 		}
-
-        return View::make('comments.show')
-        	->with('comment', $comment);
+		
+		return Redirect::route('comments.index')
+			->withErrors('A comment with the ID of ' . $id . ' does not exist.');       	
 	}
 
 	/**
@@ -102,12 +103,13 @@ class CommentsController extends BaseController
 	{
 		$comment = $this->comment->find($id);
 
-		if (is_null($comment)) {
-			return Redirect::route('comments.index');
+		if (isset($comment)) {
+        	return View::make('comments.edit')
+        		->with('comment', $comment);
 		}
 
-        return View::make('comments.edit')
-        	->with('comment', $comment);
+		return Redirect::route('comments.index')
+			->withErrors('A comment with the ID of ' . $id . ' does not exist.');
 	}
 
 	/**

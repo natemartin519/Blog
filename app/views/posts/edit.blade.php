@@ -1,9 +1,5 @@
 @extends('layouts.admin')
 
-@section('header')
-	<div class="container empty-space"></div>
-@stop
-
 @section('title')
 	<h2>Edit {{ $post->header }}</h2>
 @stop

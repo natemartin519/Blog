@@ -1,9 +1,5 @@
 @extends('layouts.admin')
 
-@section('header')
-     <div class="container empty-space"></div>
-@stop
-
 @section('title')
 	<h2>Comment</h2>
 @stop

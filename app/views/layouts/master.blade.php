@@ -19,7 +19,7 @@
 </head>
 <body>
 	@include ('layouts.partials.menu')
-	@yield('header')
+	@yield('header', '<div class="container empty-space"></div>')
 
 	<div class="container">
 		<div class="body">
