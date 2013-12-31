@@ -7,7 +7,7 @@ class UsersController extends BaseController
 	public function __construct(User $user)
 	{
 		$this->beforeFilter('auth', array('except' => array('create', 'store')));
-		$this->beforeFilter('admin', array('except' => array('show', 'edit', 'store', 'create')));
+		$this->beforeFilter('admin', array('except' => array('show', 'edit', 'store', 'create', 'index')));
 		$this->user = $user;
 	}
 
@@ -19,6 +19,7 @@ class UsersController extends BaseController
 	public function index()
 	{
 		$users = $this->user->all();
+
         return View::make('users.index')
         	->with('users', $users);
 	}
@@ -30,11 +31,13 @@ class UsersController extends BaseController
 	 */
 	public function create()
 	{
-		if (Auth::check() && !Auth::user()->isAdmin()) {
-        	return Redirect::route('posts.index');
+		// Only admin users or guests are don't allow to creat of a new user.
+		if (Auth::guest() || Auth::user()->isAdmin()) {
+        	return View::make('users.create');
         }
 
-        return View::make('users.create');
+        return Redirect::route('posts.index')
+        	->withErrors('Please logout current user to create a new user.');
 	}
 
 	/**
@@ -45,30 +48,17 @@ class UsersController extends BaseController
 	public function store()
 	{
 		$input = Input::all();
-		$valid = Validator::make($input, User::$rules);
 
-		if($valid->passes()) {
-			$password = $input['password'];
-			$password = Hash::make($password);
+		if($this->user->isValid($input)) {
+			$this->user->create($input);
 
-			$user = new User();
-			$user->email = $input['email'];
-			$user->username = $input['username'];
-			$user->password = $password;
-			$user->access_level = 0;
-
-			$user->save();
-
-			if (Auth::check()) {
-				return Redirect::route('users.index');
-			}
-
-			return Redirect::to('login');
+			$RedirectRoute = Auth::check() ? 'users.index' : 'login';
+			return Redirect::route($RedirectRoute);
 		} 
 
-		return Redirect::route('users.create')
+		return Redirect::back()
 			->withInput(Input::except('password','password_confirmation'))
-			->withErrors($valid);
+			->withErrors($this->user->errors);
 	}
 
 	/**
@@ -81,12 +71,14 @@ class UsersController extends BaseController
 	{
 		$user = $this->user->find($id);
 
-		if (is_null($user)) {
-			return Redirect::route('users.index');
+		if (isset($user)) {
+	        return View::make('users.show')
+	        	->with('user', $user);			
 		}
 
-        return View::make('users.show')
-        	->with('user', $user);
+		$redirectRoute = Auth::user()->isAdmin() ? 'users.index' : 'posts.index';
+		return Redirect::route($redirectRoute)
+			->withErrors('A user with the ID of ' . $id . ' does not exist.');
 	}
 
 	/**
@@ -96,15 +88,24 @@ class UsersController extends BaseController
 	 * @return Response
 	 */
 	public function edit($id)
-	{		
+	{
 		$user = $this->user->find($id);
 
-		if (!is_null($user) && ((Auth::user()->id == $user->id) || Auth::user()->isAdmin())) {
-			return View::make('users.edit')
-				->with('user', $user);		
-		} 
+		if (isset($user)) {
 
-	    return Redirect::route('posts.index');
+			if ((Auth::user()->id == $id) || Auth::user()->isAdmin()) {
+				return View::make('users.edit')
+					->with('user', $user);		
+			}
+
+			$errors = 'You are not authorised to edit user ' . $id . '.';
+		} 
+		else {
+			$errors = 'A user with the ID of ' . $id . ' does not exist.';
+		}
+
+	    return Redirect::route('posts.index')
+	    	->withErrors($errors);
 	}
 
 	/**
@@ -115,6 +116,7 @@ class UsersController extends BaseController
 	 */
 	public function update($id)
 	{
+		//TODO: Refactor
 		$user = $this->user->find($id);
 
 		if (is_null($user)) {
@@ -137,7 +139,7 @@ class UsersController extends BaseController
 			return Redirect::route('users.index');
 		}
 
-		return Redirect::route('users.edit', $id)
+		return Redirect::back()
 			->withInput()
 			->withErrors($valid);
 	}
@@ -152,12 +154,14 @@ class UsersController extends BaseController
 	{
 		$user = $this->user->find($id);
 
-		if (is_null($user)) {
-			return Redirect::route('users.index');
+		if (isset($user)) {
+			$user->delete();
+
+			return Redirect::route('users.index')
+				->with('message', 'User successfully deleted.');
 		}
 
-		$user->delete();
-
-		return Redirect::route('users.index');
+		return Redirect::route('users.index')
+			->withError('A user with the ID of ' . $id . ' does not exist.');
 	}
 }

@@ -61,7 +61,7 @@ class CommentsController extends BaseController
 				->with('message', 'Comment successfully created.');
 		}
 
-		return Redirect::route('comments.create')
+		return Redirect::back()
 			->withInput()
 			->withErrors($this->comment->errors);
 	}
@@ -122,7 +122,7 @@ class CommentsController extends BaseController
 				->with('message', 'Comment successfully updated.');
 		}
 
-		return Redirect::route('comments.edit', $id)
+		return Redirect::back()
 			->withInput()
 			->withErrors($comment->errors);
 	}
@@ -135,9 +135,16 @@ class CommentsController extends BaseController
 	 */
 	public function destroy($id)
 	{
-		$this->comment->find($id)->delete();
+		$comment = $this->comment->find($id);
+
+		if (isset($comment)) {
+
+			$comment->delete();
+			return Redirect::route('comments.index')
+				->with('message', 'Comment successfully deleted.');
+		}
 
 		return Redirect::route('comments.index')
-			->with('message', 'Comment successfully deleted.');
+			->withError('A comment with the ID of ' . $id . ' does not exist.');
 	}
 }

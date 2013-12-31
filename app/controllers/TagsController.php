@@ -84,7 +84,7 @@ class TagsController extends BaseController
 	{
 		$input = Input::all();
 		$tag = $this->tag->find($id);
-
+// error chatch
 		if ($tag->fill($input)->isValid()) {
 
 			$tag->save();
@@ -105,9 +105,16 @@ class TagsController extends BaseController
 	 */
 	public function destroy($id)
 	{
-		$this->tag->find($id)->delete();
+		$tag = $this->tag->find($id);
 		
+		if (isset($tag)) {
+			
+			$tag->delete();
+			return Redirect::route('tags.index')
+				->with('message', 'Tag successfully deleted.');
+		}
+
 		return Redirect::route('tags.index')
-			->with('message', 'Tag successfully deleted.');
+			->withError('A tag with the ID of ' . $id . ' does not exist.');
 	}
 }

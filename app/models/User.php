@@ -6,7 +6,9 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface 
 {
 
-	protected $guarded = array();
+	protected $fillable = array('password', 'email', 'username');
+
+	// protected $guarded = array();
 	public $timestamps = false;
 
 	public static $rules = array(
@@ -37,23 +39,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 		$this->attributes['password'] = Hash::make($value);
 	}
 
-
-
-
-	/**
-	 * Check if the user has admin privileges.
-	 *
-	 * @return boolien
-	 */
-	public function isAdmin()
-	{
-		if ($this->access_level == 1) {
-			return true;
-		}
-
-		return false;
-	}
-
 	/**
 	 * Get the unique identifier for the user.
 	 *
@@ -82,5 +67,31 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 	public function getReminderEmail()
 	{
 		return $this->email;
+	}
+
+	/**
+	 * Check if the user has admin privileges.
+	 *
+	 * @return boolien
+	 */
+	public function isAdmin()
+	{
+		if ($this->access_level == 1) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public function isValid($data) {
+		$validator = Validator::make($data, static::$rules);
+
+		if ($validator->passes()) {
+			return true;
+		}
+
+		$this->errors = $validator->messages();
+
+		return false;
 	}
 }

@@ -21,9 +21,8 @@ class SessionsController extends BaseController {
 	{
 		$input = Input::all();
 		$credentials = array('email' => $input['email'], 'password' => $input['password']);		
-		$attempt = Auth::attempt($credentials);	
 
-		if ($attempt) {
+		if (Auth::attempt($credentials)) {
 			return Redirect::intended('/');
 		}
 
