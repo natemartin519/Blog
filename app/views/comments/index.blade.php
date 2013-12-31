@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title')
-	<h2>All Comments</h2>
-@stop
+@if ($comments->count())
+	@section('title')
+		<h2>All Comments</h2>
+	@stop
 
 
-@section('body')
+	@section('body')
 
-	@if ($comments->count())
 		<table class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
@@ -64,8 +64,11 @@
 			</tbody>
 		</table>
 
-	@else
-		There are no comments
-	@endif
+	@stop
 
-@stop
+@else
+	@section('title')
+		<h2>There are no comments!</h2>
+	@stop	 	
+	
+@endif

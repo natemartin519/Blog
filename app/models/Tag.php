@@ -6,8 +6,8 @@ class Tag extends Eloquent
 
 	public $timestamps = false;
 
-	public static $rules = array('name' => 'required');
 	public $errors;
+	public static $rules = array('name' => 'required');
 
 	public function posts()
 	{

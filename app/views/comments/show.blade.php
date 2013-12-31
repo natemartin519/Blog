@@ -15,9 +15,8 @@
 				</a>			
 			</div>
 
-			<div class="btn-group">
-
-				@if (Auth::user()->isAdmin())
+			@if (Auth::user()->isAdmin())
+				<div class="btn-group">
 					<a href="{{ URL::route('comments.edit', array($comment->id)) }}" class="btn btn-danger btn-xs">
 						<span class="glyphicon glyphicon-pencil"></span>
 					</a>
@@ -25,9 +24,9 @@
 					<button class="btn btn-danger btn-xs" type="submit">
 						<span class="glyphicon glyphicon-trash"></span>
 					</button >
-				@endif
-
-			</div>
+				</div>	
+			@endif
+			
 		</div>
 
 	{{ Form::close() }}

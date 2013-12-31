@@ -19,12 +19,13 @@ class CommentsController extends BaseController
 	 */
 	public function index()
 	{
+
 		if (Auth::user()->isAdmin()) {
-			$comments = $this->comment->with('user', 'post')->get();
+			$comments = $this->comment->all();
 		}
 		else {
 			$userID = Auth::user()->id;
-			$comments = $this->comment->where("user_id", $userID )->with('user', 'post')->get();
+			$comments = $this->comment->all($userID);
 		}
 
         return View::make('comments.index')
@@ -38,19 +39,10 @@ class CommentsController extends BaseController
 	 */
 	public function create()
 	{
-		if (Input::has('post')) {
 			$postID = Input::get('post');
-			$post = Post::find($postID);
 
-			if (is_null($post)) {
-				return Redirect::route('posts.index');
-			}
-
-        	return View::make('comments.create')
-        		->with('post_id', $postID);
-        }
-
-        return Redirect::route('comments.index'); 
+    		return View::make('comments.create')
+    			->with('post_id', $postID);
 	}
 
 	/**
@@ -61,17 +53,17 @@ class CommentsController extends BaseController
 	public function store()
 	{
 		$input = Input::all();
-		$rules = Comment::$rules;
-		$valid = Validator::make($input, $rules);
 
-		if ($valid->passes()) {
-			$this->comment->create($input);
-			return Redirect::route('comments.index');
+		if ($this->comment->fill($input)->isValid()) {
+			
+			$this->comment->save();			
+			return Redirect::route('comments.index')
+				->with('message', 'Comment successfully created.');
 		}
 
 		return Redirect::route('comments.create')
 			->withInput()
-			->withErrors($valid);
+			->withErrors($this->comment->errors);
 	}
 
 	/**
@@ -120,19 +112,19 @@ class CommentsController extends BaseController
 	 */
 	public function update($id)
 	{
-		$input = array_except(Input::all(), '_method');
-		$valid = Validator::make($input, Comment::$rules);
+		$input = Input::all();
+		$comment = $this->comment->find($id);
 
-		if ($valid->passes()){
-			$comment = $this->comment->find($id);
-			$comment->update($input);
-
-			return Redirect::route('comments.index');
+		if ($comment->fill($input)->isValid()){
+			
+			$comment->save();
+			return Redirect::route('comments.index')
+				->with('message', 'Comment successfully updated.');
 		}
 
 		return Redirect::route('comments.edit', $id)
 			->withInput()
-			->withErrors($valid);
+			->withErrors($comment->errors);
 	}
 
 	/**
@@ -144,6 +136,8 @@ class CommentsController extends BaseController
 	public function destroy($id)
 	{
 		$this->comment->find($id)->delete();
-		return Redirect::route('comments.index');
+
+		return Redirect::route('comments.index')
+			->with('message', 'Comment successfully deleted.');
 	}
 }

@@ -46,7 +46,6 @@ class TagsController extends BaseController
 		if ($this->tag->fill($input)->isValid()) {
 			
 			$this->tag->save();
-
 			return Redirect::route('tags.index')
 				->with('message', 'New tag successfully created.');
 		}
@@ -89,7 +88,6 @@ class TagsController extends BaseController
 		if ($tag->fill($input)->isValid()) {
 
 			$tag->save();
-
 			return Redirect::route('tags.index')
 				->with('message', 'Tag successfully updated.');
 		}
