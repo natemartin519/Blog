@@ -7,7 +7,17 @@ use Illuminate\Http\Request;
 
 class TagsController extends Controller {
 
-	/**
+    protected $tag;
+
+    /**
+     * @param Tag $tag
+     */
+    function __construct(Tag $tag)
+    {
+        $this->tag = $tag;
+    }
+
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response

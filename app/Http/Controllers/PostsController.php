@@ -7,7 +7,17 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller {
 
-	/**
+    protected $post;
+
+    /**
+     * @param Post $post
+     */
+    function __construct(Post $post)
+    {
+        $this->post = $post;
+    }
+
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
