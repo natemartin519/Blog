@@ -1,8 +1,9 @@
 # Blog Site with Laravel PHP Framework. 
 
 #### Version V2.x TODO List
-- [ ] Migrate to Laravel 5 / Add Tests along the way
-- [ ] Code cleanup / Refactoring.
+- [ ] Migrate to Laravel 5 from clean install
+- [ ] Add tests along the way
+- [ ] Code cleanup / refactoring.
 
 #### Future TODO List
 - [ ] Add a post status filter.
