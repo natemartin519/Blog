@@ -29,16 +29,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/readme.md">
+      <file leaf-file-name="DatabaseSeeder.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0996016" vertical-offset="0" max-vertical-offset="1004">
-              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-              <folding />
+            <state vertical-scroll-proportion="0.17424975" vertical-offset="0" max-vertical-offset="1033">
+              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+              <folding>
+                <element signature="e#7#38#0#PHP" expanded="true" />
+              </folding>
             </state>
-          </provider>
-          <provider editor-type-id="MarkdownPreviewEditor">
-            <state />
           </provider>
         </entry>
       </file>
@@ -50,8 +49,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/readme.md" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2015_03_23_191638_create_posts_table.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/database/migrations/2015_03_23_191700_create_comments_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2015_03_23_191752_create_tags_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2015_03_23_191834_pivot_post_tag_table.php" />
       </list>
     </option>
   </component>
@@ -121,56 +126,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Blog - L5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blog - L5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blog - L5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blog - L5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blog - L5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="seeds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blog - L5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blog - L5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -306,25 +261,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0996016" vertical-offset="0" max-vertical-offset="1004">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32913843" vertical-offset="0" max-vertical-offset="1060">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.3678606" vertical-offset="0" max-vertical-offset="1033">
+          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
           <folding>
-            <marker date="1427132673446" expanded="true" signature="-1:-1" placeholder="{&quot;name&quot;: &quot;laravel/laravel&quot;...}" />
-            <marker date="1427132673446" expanded="true" signature="-1:-1" placeholder="[...]" />
-            <marker date="1427132673446" expanded="true" signature="-1:-1" placeholder="{&quot;laravel/framework&quot;: &quot;5.0.*&quot;...}" />
-            <marker date="1427132673446" expanded="true" signature="-1:-1" placeholder="{&quot;phpunit/phpunit&quot;: &quot;~4.0&quot;...}" />
-            <marker date="1427132673446" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1427132673446" expanded="true" signature="-1:-1" placeholder="[...]" />
-            <marker date="1427132673446" expanded="true" signature="-1:-1" placeholder="{&quot;App\\&quot;: &quot;app/&quot;...}" />
-            <marker date="1427132673446" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1427132673446" expanded="true" signature="-1:-1" placeholder="[...]" />
-            <marker date="1427132673446" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1427132673446" expanded="true" signature="-1:-1" placeholder="[...]" />
-            <marker date="1427132673446" expanded="true" signature="-1:-1" placeholder="[...]" />
-            <marker date="1427132673446" expanded="true" signature="-1:-1" placeholder="[...]" />
-            <marker date="1427132673446" expanded="true" signature="-1:-1" placeholder="{&quot;preferred-install&quot;: &quot;dist&quot;...}" />
+            <marker date="1427137223757" expanded="true" signature="-1:-1" placeholder="{&quot;name&quot;: &quot;natemartin519/blog&quot;...}" />
+            <marker date="1427137223757" expanded="true" signature="-1:-1" placeholder="{&quot;laravel/framework&quot;: &quot;5.0.*&quot;...}" />
+            <marker date="1427137223757" expanded="true" signature="-1:-1" placeholder="{&quot;phpunit/phpunit&quot;: &quot;~4.0&quot;...}" />
+            <marker date="1427137223757" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1427137223757" expanded="true" signature="-1:-1" placeholder="[...]" />
+            <marker date="1427137223757" expanded="true" signature="-1:-1" placeholder="{&quot;App\\&quot;: &quot;app/&quot;...}" />
+            <marker date="1427137223757" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1427137223757" expanded="true" signature="-1:-1" placeholder="[...]" />
+            <marker date="1427137223757" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1427137223757" expanded="true" signature="-1:-1" placeholder="[...]" />
+            <marker date="1427137223757" expanded="true" signature="-1:-1" placeholder="[...]" />
+            <marker date="1427137223757" expanded="true" signature="-1:-1" placeholder="[...]" />
+            <marker date="1427137223757" expanded="true" signature="-1:-1" placeholder="{&quot;preferred-install&quot;: &quot;dist&quot;...}" />
           </folding>
         </state>
       </provider>
@@ -339,21 +304,122 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.05808325" vertical-offset="0" max-vertical-offset="1033">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.03872217" vertical-offset="0" max-vertical-offset="1033">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_03_23_191700_create_comments_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0996016" vertical-offset="0" max-vertical-offset="1004">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding />
+        <state vertical-scroll-proportion="0.6001936" vertical-offset="0" max-vertical-offset="1033">
+          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+          <folding>
+            <marker date="1427138595768" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1427138595768" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427138595768" expanded="true" signature="-1:-1" placeholder=" Run the migrations. ..." />
+            <marker date="1427138595768" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1427138595768" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427138595768" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427138595768" expanded="true" signature="-1:-1" placeholder=" Reverse the migrations. ..." />
+            <marker date="1427138595768" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_03_23_191752_create_tags_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.52274925" vertical-offset="0" max-vertical-offset="1033">
+          <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+          <folding>
+            <marker date="1427138642575" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1427138642575" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427138642575" expanded="true" signature="-1:-1" placeholder=" Run the migrations. ..." />
+            <marker date="1427138642575" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1427138642575" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427138642575" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427138642575" expanded="true" signature="-1:-1" placeholder=" Reverse the migrations. ..." />
+            <marker date="1427138642575" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_03_23_191834_pivot_post_tag_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.56147146" vertical-offset="0" max-vertical-offset="1033">
+          <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+          <folding>
+            <marker date="1427138666130" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1427138666130" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427138666130" expanded="true" signature="-1:-1" placeholder=" Run the migrations. ..." />
+            <marker date="1427138666130" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1427138666130" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427138666130" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427138666130" expanded="true" signature="-1:-1" placeholder=" Reverse the migrations. ..." />
+            <marker date="1427138666130" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1033">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1427131455847" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1427131455847" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427131455847" expanded="true" signature="-1:-1" placeholder=" Run the migrations. ..." />
+            <marker date="1427131455847" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1427131455847" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427131455847" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1427131455847" expanded="true" signature="-1:-1" placeholder=" Reverse the migrations. ..." />
+            <marker date="1427131455847" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40658277" vertical-offset="0" max-vertical-offset="1033">
+          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="33" />
+          <folding>
+            <marker date="1427138420627" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1427138420627" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427138420627" expanded="true" signature="-1:-1" placeholder=" Run the migrations. ..." />
+            <marker date="1427138420627" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1427138420627" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427138420627" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1427138420627" expanded="true" signature="-1:-1" placeholder=" Reverse the migrations. ..." />
+            <marker date="1427138420627" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_03_23_191638_create_posts_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6001936" vertical-offset="0" max-vertical-offset="1033">
+          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+          <folding>
+            <marker date="1427138563458" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1427138563458" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427138563458" expanded="true" signature="-1:-1" placeholder=" Run the migrations. ..." />
+            <marker date="1427138563458" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1427138563458" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427138563458" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1427138563458" expanded="true" signature="-1:-1" placeholder=" Reverse the migrations. ..." />
+            <marker date="1427138563458" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17424975" vertical-offset="0" max-vertical-offset="1033">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+          <folding>
+            <element signature="e#7#38#0#PHP" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>

@@ -1,10 +1,6 @@
 {
-  "name": "laravel/laravel",
-  "description": "The Laravel Framework.",
-  "keywords": [
-    "framework",
-    "laravel"
-  ],
+  "name": "natemartin519/blog",
+  "description": "Simple Laravel blog",
   "license": "MIT",
   "type": "project",
   "require": {
