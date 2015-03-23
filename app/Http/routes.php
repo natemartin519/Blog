@@ -11,11 +11,16 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+// Default View
+Route::get('/', 'PostsController@index');
 
-Route::get('home', 'HomeController@index');
-
+// Auth
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+// RESTful Resources
+Route::resource('posts', 'PostsController');
+Route::resource('comments', 'CommentsController');
+Route::resource('tags', 'TagsController', ['except' => ['show']]);
