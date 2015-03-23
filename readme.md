@@ -3,14 +3,14 @@
 #### Version V2.x TODO List
 - [ ] Migrate to Laravel 5 from clean install
 - [ ] Add tests along the way
-- [ ] Code cleanup / refactoring.
+- [ ] Misc code cleanup & refactoring.
 
 #### Future TODO List
+- [ ] Re-add user model functionality.
 - [ ] Add a post status filter.
-- [ ] Add a password change / reset option to users edit form.
 - [ ] Add markdown support to comment create and post create.
-- [ ] Use OAuth 2 for user login
-- [ ] Better user Auth levels/Roles
+- [ ] Use OAuth 2 for user login. (Can I let Laravel 5 do it?) 
+- [ ] Better user Auth levels/Roles. (Can I let Laravel 5 do it?)
 
 #### Finished(V1.x) TODO List
 - [x] Create database tables.
