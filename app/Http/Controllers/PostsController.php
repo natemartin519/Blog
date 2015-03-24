@@ -11,9 +11,9 @@ class PostsController extends Controller {
     protected $post;
 
     /**
-     * @param Post $post
+     * @param PostInterface $post
      */
-    function __construct(Post $post)
+    function __construct(PostInterface $post)
     {
         $this->post = $post;
     }

@@ -11,9 +11,9 @@ class CommentsController extends Controller {
     protected $comment;
 
     /**
-     * @param Comment $comment
+     * @param CommentInterface $comment
      */
-    function __construct(Comment $comment)
+    function __construct(CommentInterface $comment)
     {
         $this->comment = $comment;
     }

@@ -11,9 +11,9 @@ class TagsController extends Controller {
     protected $tag;
 
     /**
-     * @param Tag $tag
+     * @param TagInterface $tag
      */
-    function __construct(Tag $tag)
+    function __construct(TagInterface $tag)
     {
         $this->tag = $tag;
     }
